@@ -1,0 +1,20 @@
+body, head, hr, html, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub {
+    font-size: 100%;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#topbar{
+    height:130px;
+    width:100%;
+    background-color:#00688B;
+    margin-top:-21px;
+    border-bottom: 5px solid #B4CDCD;
+    position:relative;
+    float:top;
+}
+
+#logout{
+    display: inline;
+}
