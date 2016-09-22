@@ -103,3 +103,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+
+.error a {
+    text-decoration:none; 
+}
+
+.error a:hover {
+    text-decoration: underline; 
+}

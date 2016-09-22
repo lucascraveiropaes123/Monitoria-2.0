@@ -4762,6 +4762,16 @@ a.list-group-item-danger.active:focus {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
+
+.panel:hover {
+    border-color: black;
+    border-style: solid;
+}
+
+.panel a:hover {
+    text-decoration: none !important;
+}
+
 .panel-body {
   padding: 0px;
 }

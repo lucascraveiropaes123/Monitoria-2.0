@@ -58,7 +58,7 @@ public class BolsistaDAO {
         try{
             tx = session.beginTransaction();
             
-            Bolsista bolsista = (Bolsista) session.createQuery("from Bolsista where cnpj = ?").setInteger(0, BolsistaID).uniqueResult();
+            Bolsista bolsista = (Bolsista) session.createQuery("from Bolsista where id_bolsista = ?").setInteger(0, BolsistaID).uniqueResult();
             
             if (bolsista != null)
             {

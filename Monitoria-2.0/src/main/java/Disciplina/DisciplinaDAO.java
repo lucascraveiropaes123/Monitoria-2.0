@@ -63,7 +63,7 @@ public class DisciplinaDAO {
         try{
             tx = session.beginTransaction();
             
-            Disciplina disciplina = (Disciplina) session.createQuery("from Disciplina where cnpj = ?").setInteger(0, DisciplinaID).uniqueResult();
+            Disciplina disciplina = (Disciplina) session.createQuery("from Disciplina where key_disciplina = ?").setInteger(0, DisciplinaID).uniqueResult();
             
             if (disciplina != null)
             {

@@ -22,7 +22,7 @@ public class CadastroBolsista extends HttpServlet {
             BolsistaDAO pDAO = new BolsistaDAO();
             Bolsista bolsista = new Bolsista();
             
-            String nomeCompleto = request.getParameter("primeiroNome") + request.getParameter("sobrenome");
+            String nomeCompleto = request.getParameter("primeiroNome") + " " + request.getParameter("sobrenome");
             
             bolsista.setLogin(request.getParameter("login"));
             bolsista.setMateria(request.getParameter("materia"));

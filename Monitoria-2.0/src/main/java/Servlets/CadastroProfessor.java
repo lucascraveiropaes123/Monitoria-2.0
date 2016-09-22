@@ -24,7 +24,7 @@ public class CadastroProfessor extends HttpServlet {
             ProfessorDAO pDAO = new ProfessorDAO();
             Professor professor = new Professor();
             
-            String nomeCompleto = request.getParameter("primeiroNome") + request.getParameter("sobrenome");
+            String nomeCompleto = request.getParameter("primeiroNome") + " " + request.getParameter("sobrenome");
             
             professor.setLogin(request.getParameter("login"));
             professor.setMateria(request.getParameter("materia"));

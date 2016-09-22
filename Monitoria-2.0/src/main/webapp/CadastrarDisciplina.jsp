@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.jsp">Monitoria</a> 
+                <a class="navbar-brand" href="../index.jsp"><%=instituicao.getNome()%></a> 
             </div>
             <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
                 <a href="#" class="btn btn-danger square-btn-adjust">Sair</a>
@@ -51,25 +51,13 @@
                         <a href="../Index.jsp"><i class="fa fa-dashboard fa-3x"></i> Página inicial</a>
                     </li>
                     <li>
-                        <a href="Cadastros.jsp"><i class="fa fa-desktop fa-3x"></i> Cadastros</a>
-                    </li>
-                    <li>
-                        <a href="Relatorios.jsp"><i class="fa fa-qrcode fa-3x"></i> Relatórios</a>
-                    </li>
-                    <li  >
-                        <a href="Tabelas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Tabelas salvas </a>
-                    </li>
-                    <li  >
-                        <a href="Novatabela.jsp"><i class="fa fa-edit fa-3x"></i> Nova tabela </a>
-                    </li>
-                    <li>
                         <a class="active-menu" href="#"><i class="fa fa-desktop fa-3x"></i> Cadastrar/Cadastros<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="#">Professores<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#">Listar</a>
+                                        <a href="ListarProfessores.jsp">Listar</a>
                                     </li>
                                     <li>
                                         <a href="CadastrarProfessor.jsp">Cadastrar</a>
@@ -80,10 +68,10 @@
                                 <a href="#">Bolsistas<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#">Listar</a>
+                                        <a href="ListarBolsistas.jsp">Listar</a>
                                     </li>
                                     <li>
-                                        <a href="#">Cadastrar</a>
+                                        <a href="CadastrarBolsistas.jsp">Cadastrar</a>
                                     </li>
                                 </ul>
                             </li>
@@ -91,15 +79,24 @@
                                 <a href="#">Disciplina<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#">Listar</a>
+                                        <a href="ListarDisciplinas.jsp">Listar</a>
                                     </li>
                                     <li>
-                                        <a class="active-menu" href="Instituicao/CadastrarDisciplina.jsp">Cadastrar</a>
+                                        <a href="CadastrarDisciplina.jsp">Cadastrar</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                    </li> 			                   
+                    </li> 
+                    <li>
+                        <a href="Relatorios.jsp"><i class="fa fa-qrcode fa-3x"></i> Relatórios</a>
+                    </li>
+                    <li  >
+                        <a href="Tabelas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Tabelas salvas </a>
+                    </li>
+                    <li  >
+                        <a href="Novatabela.jsp"><i class="fa fa-edit fa-3x"></i> Nova tabela </a>
+                    </li>			                   
                     <li>
                         <a href="Perfil.jsp"><i class="fa fa-square-o fa-3x"></i> Perfil</a>
                     </li>

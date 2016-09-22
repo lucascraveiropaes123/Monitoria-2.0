@@ -1,11 +1,17 @@
-<%@page import="Bolsista.BolsistaDAO"%>
-<%@page import="java.util.List"%>
-<%@page import="Instituicao.Instituicao"%>
+<%@page import="Bolsista.*"%>
+<%@page import="Instituicao.*"%>
+<%@page import="Professor.*"%>
 <%@page import="Disciplina.*"%>
+
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
     Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
+    
+    ProfessorDAO pDAO = new ProfessorDAO();
+    
+    BolsistaDAO bDAO = new BolsistaDAO();
     
     DisciplinaDAO dDAO = new DisciplinaDAO();
     
@@ -101,7 +107,7 @@
                     <li  >
                         <a href="Tabelas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Tabelas salvas </a>
                     </li>
-                    <li  >
+                    <li>
                         <a href="Novatabela.jsp"><i class="fa fa-edit fa-3x"></i> Nova tabela </a>
                     </li>			                   
                     <li>
@@ -115,52 +121,69 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Cadastro de Bolsistas</h2>   
-                        <h5>Digite as infomações necessárias para o cadastro de um novo bolsista</h5>
-                    </div>
-                </div>             
-                <div class="row" style="margin-top: 2em">
-                    <div class="col-md-3 col-sm-6 col-xs-6">           
-                        <form role="form" action="CadastroBolsista">
-                            <div class="form-group">
-                                <label style="margin-top: 1em;">Primeiro Nome: </label>
-                                <input class="form-control" name="primeiroNome" placeholder="Digite o primeiro nome do bolsista" />
-                                
-                                <label style="margin-top: 1em;">Sobrenome: </label>
-                                <input class="form-control" name="sobrenome" placeholder="Digite o sobrenome do bolsista" />
-                                
-                                <label style="margin-top: 1em;">Matéria: </label>
-                                
-                                <select name="materia">
-                                    <option style="color:black" value="-">Escolha a matéria relacionada à esse bolsista</option>
-                                    <%for (Disciplina disciplina : disciplinas)
-                                    {
-                                        String option = "";
-                                        option += "<option value=\""+disciplina.getKey_disciplina()+"\">"+disciplina.getNome()+"</option>";
-                                    %>
-                                        <%=option%>
-                                    <%
-                                    }
-                                    %>
-                                </select>
-                                                                
-                                <label style="margin-top: 1em;">Login: </label>
-                                <input class="form-control" name="login" placeholder="Digite o nome do bolsista" />
-                                
-                                <label style="margin-top: 1em;">Senha: </label>
-                                <input class="form-control" type="password" name="senha" placeholder="Digite o nome do bolsista" />
-                                                                                                
-                                <input class="but but-rc" type="submit" value="Cadastrar" style="background-color: #C90000; text: bold; padding-left:14px; color:white; margin-top: 1em;">
+
+                        <!-- Tabela de Listagem -->
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Tabela de todos os monitores cadastrados e suas respectivas informações
                             </div>
-                        </form>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Coordenador</th>
+                                                <th>Bolsista</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                            for (Disciplina disciplina : disciplinas)
+                                            {
+                                                String nomeProfessor = "Nenhum";
+                                                String nomeBolsista = "Nenhum";
+                                                Professor professor = null;
+                                                Bolsista bolsista = null;
+                                                
+                                                if(pDAO.getProfessor(disciplina.getKey_disciplina()) != null)
+                                                {
+                                                    professor = pDAO.getProfessor(disciplina.getKey_disciplina());
+                                                    nomeProfessor = professor.getNome_completo();
+                                                }
+                                                
+                                                if(bDAO.getBolsista(disciplina.getKey_disciplina()) != null)
+                                                {
+                                                    bolsista = bDAO.getBolsista(disciplina.getKey_disciplina());
+                                                    nomeBolsista = bolsista.getNome_completo();
+                                                }
+                                                                                                
+                                            %>
+                                                <tr class="odd gradeX">
+                                                    <td><%=disciplina.getNome()%></td>
+                                                    <td><%=nomeProfessor%></td>
+                                                    <td><%=nomeBolsista%></td>
+                                                </tr>   
+                                            <%
+                                            }
+                                            %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <!--Fim da Tabela de Listagem -->
                     </div>
-                </div>          
+                </div>         
             </div>       
         </div>
         
         <script src="Instituicao/js/jquery-1.10.2.js"></script>
         <script src="Instituicao/js/bootstrap.min.js"></script>
         <script src="Instituicao/js/jquery.metisMenu.js"></script>
+        <script src="Instituicao/js/morris/raphael-2.1.0.min.js"></script>
+        <script src="Instituicao/js/morris/morris.js"></script>
         <script src="Instituicao/js/custom.js"></script>
     </body>
 </html>

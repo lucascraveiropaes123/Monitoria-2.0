@@ -57,7 +57,7 @@ public class ProfessorDAO {
         try{
             tx = session.beginTransaction();
             
-            Professor professor = (Professor) session.createQuery("from Professor where cnpj = ?").setInteger(0, ProfessorID).uniqueResult();
+            Professor professor = (Professor) session.createQuery("from Professor where id_professor = ?").setInteger(0, ProfessorID).uniqueResult();
             
             if (professor != null)
             {
