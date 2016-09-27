@@ -11,11 +11,17 @@
     
     ProfessorDAO pDAO = new ProfessorDAO();
     
+    List<Professor> professores = (List<Professor>)pDAO.listProfessor();
+    
     BolsistaDAO bDAO = new BolsistaDAO();
+    
+    List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
     
     DisciplinaDAO dDAO = new DisciplinaDAO();
     
     List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina();
+    
+    session.setAttribute("Disciplinas", disciplinas);
 %>
 
 
@@ -139,35 +145,41 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%
+                                        <%
                                             for (Disciplina disciplina : disciplinas)
                                             {
                                                 String nomeProfessor = "Nenhum";
                                                 String nomeBolsista = "Nenhum";
-                                                Professor professor = null;
-                                                Bolsista bolsista = null;
                                                 
-                                                if(pDAO.getProfessor(disciplina.getKey_disciplina()) != null)
+                                                for (Bolsista bolsista : bolsistas)
                                                 {
-                                                    professor = pDAO.getProfessor(disciplina.getKey_disciplina());
-                                                    nomeProfessor = professor.getNome_completo();
+                                                    Integer id = Integer.parseInt(bolsista.getMateria());
+                                                    
+                                                    if(id == disciplina.getKey_disciplina())
+                                                    {
+                                                        nomeBolsista = bolsista.getNome_completo();
+                                                    }
                                                 }
                                                 
-                                                if(bDAO.getBolsista(disciplina.getKey_disciplina()) != null)
+                                                for (Professor professor : professores)
                                                 {
-                                                    bolsista = bDAO.getBolsista(disciplina.getKey_disciplina());
-                                                    nomeBolsista = bolsista.getNome_completo();
+                                                    Integer id = Integer.parseInt(professor.getMateria());
+                                                    
+                                                    if(id == disciplina.getKey_disciplina())
+                                                    {
+                                                        nomeProfessor = professor.getNome_completo();
+                                                    }
                                                 }
-                                                                                                
                                             %>
+                                                
                                                 <tr class="odd gradeX">
                                                     <td><%=disciplina.getNome()%></td>
                                                     <td><%=nomeProfessor%></td>
                                                     <td><%=nomeBolsista%></td>
-                                                </tr>   
+                                                </tr>
                                             <%
                                             }
-                                            %>
+                                        %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -175,7 +187,21 @@
                         </div>
                     <!--Fim da Tabela de Listagem -->
                     </div>
-                </div>         
+                </div>       
+                <a href="ListaSelecaoDisciplinas.jsp">
+                    <div class="col-md-4 col-sm-11 col-xs-11">
+                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                            <div class="panel-body">
+                                <br>
+                                <i class="fa fa-pencil" style="font-size: 2.5em"></i>
+                                <br><br>
+                            </div>
+                            <div class="panel-footer back-footer-green">
+                                <b style="font-size: 1.5em">Editar</b>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>       
         </div>
         

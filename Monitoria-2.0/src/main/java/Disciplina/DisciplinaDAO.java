@@ -102,13 +102,16 @@ public class DisciplinaDAO {
         }
     }
     
-    public void deleteProfessor(Integer DisciplinaID){
+    public void deleteDisciplina (Integer DisciplinaID){
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
             
-            Disciplina disciplina = (Disciplina)session.get(Disciplina.class, DisciplinaID); 
+            
+            
+            Disciplina disciplina = getDisciplina(DisciplinaID);
+//(Disciplina)session.get(Disciplina.class, DisciplinaID); 
             
             session.delete(disciplina); 
             

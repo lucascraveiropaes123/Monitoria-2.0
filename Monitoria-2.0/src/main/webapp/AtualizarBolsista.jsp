@@ -1,25 +1,37 @@
-<%@page import="Bolsista.*"%>
+<%@page import="Disciplina.DisciplinaDAO"%>
+<%@page import="Disciplina.Disciplina"%>
 <%@page import="Instituicao.*"%>
-<%@page import="Professor.*"%>
-<%@page import="Disciplina.*"%>
+<%@page import="Bolsista.*"%>
 
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    DisciplinaDAO dDAO = new DisciplinaDAO();
+    
+    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina();
+    
     Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
     
-    ProfessorDAO pDAO = new ProfessorDAO();
-    
-    List<Professor> professores = (List<Professor>)pDAO.listProfessor();
-    
-    BolsistaDAO bDAO = new BolsistaDAO();
-    
-    List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
-    
-    DisciplinaDAO dDAO = new DisciplinaDAO();
+    Bolsista bolsista = (Bolsista)session.getAttribute("BolsistaVelho");
 %>
 
+
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title><%=instituicao.getNome()%></title>
+    
+    <link href="Instituicao/css/bootstrap.css" rel="stylesheet" />
+    <link href="Instituicao/css/font-awesome.css" rel="stylesheet" />
+    <link href="Instituicao/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="Instituicao/css/custom.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+        
 
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,7 +50,7 @@
      <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
-        
+    
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
@@ -49,7 +61,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.jsp"><%=instituicao.getNome()%></a> 
+                <a class="navbar-brand" href="Index.jsp"><%=instituicao.getNome()%></a> 
             </div>
             <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
                 <a href="#" class="btn btn-danger square-btn-adjust">Sair</a>
@@ -86,7 +98,7 @@
                                         <a href="ListarBolsistas.jsp">Listar</a>
                                     </li>
                                     <li>
-                                        <a href="CadastrarBolsista.jsp">Cadastrar</a>
+                                        <a href="CadastrarBolsistas.jsp">Cadastrar</a>
                                     </li>
                                 </ul>
                             </li>
@@ -109,7 +121,7 @@
                     <li  >
                         <a href="Tabelas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Tabelas salvas </a>
                     </li>
-                    <li>
+                    <li  >
                         <a href="Novatabela.jsp"><i class="fa fa-edit fa-3x"></i> Nova tabela </a>
                     </li>			                   
                     <li>
@@ -123,75 +135,53 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-
-                        <!-- Tabela de Listagem -->
-                        
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Tabela de todos os professores cadastrados e suas respectivas informações
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Matéria</th>
-                                                <th>Login</th>
-                                                <th>Bolsista</th> 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%for (Professor professor : professores)
-                                            {
-                                                String nomeBolsista = null;
-                                                Disciplina disciplina = dDAO.getDisciplina(Integer.parseInt(professor.getMateria()));
-                                                
-                                                for (Bolsista bolsista : bolsistas)
-                                                {
-                                                    if(bolsista.getMateria().equals(professor.getMateria()))
-                                                    {
-                                                        nomeBolsista = bolsista.getNome_completo();
-                                                    }
-                                                }
-                                            %>
-                                                <tr class="odd gradeX">
-                                                    <td><%=professor.getNome_completo()%></td>
-                                                    <td><%=disciplina.getNome()%></td>
-                                                    <td><%=professor.getLogin()%></td>
-                                                    <td class="center"><%=nomeBolsista%></td>
-                                                </tr>   
-                                            <%
-                                            }
-                                            %>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    <!--Fim da Tabela de Listagem -->
+                     <h2>Cadastro de Matérias</h2>   
+                        <h5>Digite as infomações necessárias para a atualização dos dados do bolsista</h5>
                     </div>
-                </div>  
-                <a href="ListaSelecaoProfessores.jsp">
-                    <div class="col-md-4 col-sm-11 col-xs-11">
-                        <div class="panel panel-primary text-center no-boder bg-color-green">
-                            <div class="panel-body">
-                                <br>
-                                <i class="fa fa-pencil" style="font-size: 2.5em"></i>
-                                <br><br>
+                </div>    <div class="row" style="margin-top: 2em">
+                    <div class="col-md-3 col-sm-6 col-xs-6">           
+                        <form role="form" action="AtualizarBolsista">
+                            <div class="form-group">
+                                <label style="margin-top: 1em;">Primeiro Nome: </label>
+                                <input class="form-control" name="primeiroNome" value="<%=bolsista.getPrimeiro_nome()%>" />
+                                
+                                <label style="margin-top: 1em;">Sobrenome: </label>
+                                <input class="form-control" name="sobrenome" placeholder="Digite o sobrenome do bolsista" />
+                                
+                                <label style="margin-top: 1em;">Matéria: </label>
+                                
+                                <select name="materia">
+                                    <option style="color:black" value="-">Escolha a matéria relacionada à esse bolsista</option>
+                                    <%for (Disciplina disciplina : disciplinas)
+                                    {
+                                        String option = "";
+                                        option += "<option value=\""+disciplina.getKey_disciplina()+"\">"+disciplina.getNome()+"</option>";
+                                    %>
+                                        <%=option%>
+                                    <%
+                                    }
+                                    %>
+                                </select>
+                                                                
+                                <label style="margin-top: 1em;">Login: </label>
+                                <input class="form-control" name="login" value="<%=bolsista.getLogin()%>" />
+                                
+                                <label style="margin-top: 1em;">Senha: </label>
+                                <input class="form-control" type="password" name="senha" value="<%=bolsista.getSenha()%>" />
+                                                                                                
+                                <input class="but but-rc" type="submit" value="Cadastrar" style="background-color: #C90000; text: bold; padding-left:14px; color:white; margin-top: 1em;">
                             </div>
-                            <div class="panel-footer back-footer-green">
-                                <b style="font-size: 1.5em">Editar</b>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </a>          
+                </div>         
             </div>       
         </div>
         
         <script src="Instituicao/js/jquery-1.10.2.js"></script>
         <script src="Instituicao/js/bootstrap.min.js"></script>
         <script src="Instituicao/js/jquery.metisMenu.js"></script>
+        <script src="Instituicao/js/morris/raphael-2.1.0.min.js"></script>
+        <script src="Instituicao/js/morris/morris.js"></script>
         <script src="Instituicao/js/custom.js"></script>
     </body>
 </html>

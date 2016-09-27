@@ -79,9 +79,14 @@ public class BolsistaDAO {
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
         try{
+            
+            System.out.println("Vou atualizar...");
+            
             tx = session.beginTransaction();
             
-            Bolsista bolsista = (Bolsista) session.createQuery("from Bolsista where key_bolsista = ?").setInteger(0, bolsistaID).uniqueResult();
+            Bolsista bolsista = (Bolsista) session.createQuery("from Bolsista where id_bolsista = ?").setInteger(0, bolsistaID).uniqueResult();
+            
+            System.out.println("Atualizando...");
             
             bolsista.setLogin(bolsistaNova.getLogin());
             bolsista.setMateria(bolsistaNova.getMateria());
@@ -90,6 +95,8 @@ public class BolsistaDAO {
             bolsista.setSenha(bolsistaNova.getSenha());
             
             session.update(bolsista); 
+            
+            System.out.println("Atualizei...");
             
             tx.commit();
             

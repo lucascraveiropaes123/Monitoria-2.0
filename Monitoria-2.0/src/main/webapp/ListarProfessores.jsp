@@ -171,7 +171,21 @@
                         </div>
                     <!--Fim da Tabela de Listagem -->
                     </div>
-                </div>         
+                </div>  
+                <a href="ListaSelecaoProfessores.jsp">
+                    <div class="col-md-4 col-sm-11 col-xs-11">
+                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                            <div class="panel-body">
+                                <br>
+                                <i class="fa fa-pencil" style="font-size: 2.5em"></i>
+                                <br><br>
+                            </div>
+                            <div class="panel-footer back-footer-green">
+                                <b style="font-size: 1.5em">Editar</b>
+                            </div>
+                        </div>
+                    </div>
+                </a>          
             </div>       
         </div>
         

@@ -80,7 +80,7 @@ public class ProfessorDAO {
         try{
             tx = session.beginTransaction();
             
-            Professor professor = (Professor) session.createQuery("from Professor where key_professor = ?").setInteger(0, professorID).uniqueResult();
+            Professor professor = (Professor) session.createQuery("from Professor where id_professor = ?").setInteger(0, professorID).uniqueResult();
             
             professor.setLogin(professorNova.getLogin());
             professor.setMateria(professorNova.getMateria());

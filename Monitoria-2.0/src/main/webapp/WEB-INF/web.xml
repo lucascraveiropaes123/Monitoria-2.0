@@ -20,6 +20,30 @@
         <servlet-name>CadastroBolsista</servlet-name>
         <servlet-class>Servlets.CadastroBolsista</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OpcoesDisciplina</servlet-name>
+        <servlet-class>Servlets.OpcoesDisciplina</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtualizarDisciplina</servlet-name>
+        <servlet-class>Servlets.AtualizarDisciplina</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OpcoesBolsista</servlet-name>
+        <servlet-class>Servlets.OpcoesBolsista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtualizarBolsista</servlet-name>
+        <servlet-class>Servlets.AtualizarBolsista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OpcoesProfessor</servlet-name>
+        <servlet-class>Servlets.OpcoesProfessor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtualizarProfessor</servlet-name>
+        <servlet-class>Servlets.AtualizarProfessor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -39,6 +63,30 @@
     <servlet-mapping>
         <servlet-name>CadastroBolsista</servlet-name>
         <url-pattern>/CadastroBolsista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpcoesDisciplina</servlet-name>
+        <url-pattern>/OpcoesDisciplina</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarDisciplina</servlet-name>
+        <url-pattern>/AtualizarDisciplina</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpcoesBolsista</servlet-name>
+        <url-pattern>/OpcoesBolsista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarBolsista</servlet-name>
+        <url-pattern>/AtualizarBolsista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpcoesProfessor</servlet-name>
+        <url-pattern>/OpcoesProfessor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarProfessor</servlet-name>
+        <url-pattern>/AtualizarProfessor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

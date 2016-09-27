@@ -9,10 +9,6 @@
 <%
     Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
     
-    ProfessorDAO pDAO = new ProfessorDAO();
-    
-    List<Professor> professores = (List<Professor>)pDAO.listProfessor();
-    
     BolsistaDAO bDAO = new BolsistaDAO();
     
     List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
@@ -23,19 +19,16 @@
 
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-      <meta charset="utf-8" />
+<head>    
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title><%=instituicao.getNome()%></title>
-	<!-- BOOTSTRAP STYLES-->
+    
     <link href="Instituicao/css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
     <link href="Instituicao/css/font-awesome.css" rel="stylesheet" />
-     <!-- MORRIS CHART STYLES-->
     <link href="Instituicao/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
     <link href="Instituicao/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
         
@@ -121,77 +114,50 @@
            
         <div id="page-wrapper">
             <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <!-- Tabela de Listagem -->
-                        
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Tabela de todos os professores cadastrados e suas respectivas informações
+                <form role="form" action="OpcoesBolsista" id="Atualizar" style="margin-top: 1em">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Selecione o bolsista e o que deseja fazer:</label>
+                            <div class="form-group">
+                                <%for (Bolsista bolsista : bolsistas)
+                                {%>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="bolsista" id="optionsRadios1" value="<%=bolsista.getId_bolsista()%>"/><%=bolsista.getNome_completo()%>
+                                        </label>
+                                    </div>
+                                <%}%>
                             </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Matéria</th>
-                                                <th>Login</th>
-                                                <th>Bolsista</th> 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%for (Professor professor : professores)
-                                            {
-                                                String nomeBolsista = null;
-                                                Disciplina disciplina = dDAO.getDisciplina(Integer.parseInt(professor.getMateria()));
-                                                
-                                                for (Bolsista bolsista : bolsistas)
-                                                {
-                                                    if(bolsista.getMateria().equals(professor.getMateria()))
-                                                    {
-                                                        nomeBolsista = bolsista.getNome_completo();
-                                                    }
-                                                }
-                                            %>
-                                                <tr class="odd gradeX">
-                                                    <td><%=professor.getNome_completo()%></td>
-                                                    <td><%=disciplina.getNome()%></td>
-                                                    <td><%=professor.getLogin()%></td>
-                                                    <td class="center"><%=nomeBolsista%></td>
-                                                </tr>   
-                                            <%
-                                            }
-                                            %>
-                                        </tbody>
-                                    </table>
+                        </div>
+                    </div>        
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="radio-inline">
+                                    <label>
+                                        <input type="radio" name="opcao" id="opcao1" value="Atualizar"/>Atualizar
+                                    </label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label>
+                                        <input type="radio" name="opcao" id="opcao2" value="Excluir"/>Excluir
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    <!--Fim da Tabela de Listagem -->
                     </div>
-                </div>  
-                <a href="ListaSelecaoProfessores.jsp">
-                    <div class="col-md-4 col-sm-11 col-xs-11">
-                        <div class="panel panel-primary text-center no-boder bg-color-green">
-                            <div class="panel-body">
-                                <br>
-                                <i class="fa fa-pencil" style="font-size: 2.5em"></i>
-                                <br><br>
-                            </div>
-                            <div class="panel-footer back-footer-green">
-                                <b style="font-size: 1.5em">Editar</b>
-                            </div>
-                        </div>
-                    </div>
-                </a>          
-            </div>       
-        </div>
+                    <button type="submit" class="btn btn-primary">Próxima Página</button></b>
+                </form>
+            </div>     
+        </div>       
+    </div>
         
-        <script src="Instituicao/js/jquery-1.10.2.js"></script>
-        <script src="Instituicao/js/bootstrap.min.js"></script>
-        <script src="Instituicao/js/jquery.metisMenu.js"></script>
-        <script src="Instituicao/js/custom.js"></script>
-    </body>
+    <script src="Instituicao/js/jquery-1.10.2.js"></script>
+    <script src="Instituicao/js/bootstrap.min.js"></script>
+    <script src="Instituicao/js/jquery.metisMenu.js"></script>
+    <script src="Instituicao/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="Instituicao/js/morris/morris.js"></script>
+    <script src="Instituicao/js/custom.js"></script>
+</body>
+                        
 </html>

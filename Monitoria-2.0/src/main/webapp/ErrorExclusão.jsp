@@ -18,6 +18,10 @@
     List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
     
     DisciplinaDAO dDAO = new DisciplinaDAO();
+    
+    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina();
+    
+    session.setAttribute("Disciplinas", disciplinas);
 %>
 
 
@@ -121,77 +125,16 @@
            
         <div id="page-wrapper">
             <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <!-- Tabela de Listagem -->
-                        
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Tabela de todos os professores cadastrados e suas respectivas informações
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Matéria</th>
-                                                <th>Login</th>
-                                                <th>Bolsista</th> 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%for (Professor professor : professores)
-                                            {
-                                                String nomeBolsista = null;
-                                                Disciplina disciplina = dDAO.getDisciplina(Integer.parseInt(professor.getMateria()));
-                                                
-                                                for (Bolsista bolsista : bolsistas)
-                                                {
-                                                    if(bolsista.getMateria().equals(professor.getMateria()))
-                                                    {
-                                                        nomeBolsista = bolsista.getNome_completo();
-                                                    }
-                                                }
-                                            %>
-                                                <tr class="odd gradeX">
-                                                    <td><%=professor.getNome_completo()%></td>
-                                                    <td><%=disciplina.getNome()%></td>
-                                                    <td><%=professor.getLogin()%></td>
-                                                    <td class="center"><%=nomeBolsista%></td>
-                                                </tr>   
-                                            <%
-                                            }
-                                            %>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    <!--Fim da Tabela de Listagem -->
-                    </div>
-                </div>  
-                <a href="ListaSelecaoProfessores.jsp">
-                    <div class="col-md-4 col-sm-11 col-xs-11">
-                        <div class="panel panel-primary text-center no-boder bg-color-green">
-                            <div class="panel-body">
-                                <br>
-                                <i class="fa fa-pencil" style="font-size: 2.5em"></i>
-                                <br><br>
-                            </div>
-                            <div class="panel-footer back-footer-green">
-                                <b style="font-size: 1.5em">Editar</b>
-                            </div>
-                        </div>
-                    </div>
-                </a>          
+                <h3>Não foi possível excluir essa disciplina pois ela deve possuir algum bolsista ou professor existente</h3>
+                <h3>Verifique se os mesmos existem, exclua-os, e tente novamente</h3>
             </div>       
         </div>
         
         <script src="Instituicao/js/jquery-1.10.2.js"></script>
         <script src="Instituicao/js/bootstrap.min.js"></script>
         <script src="Instituicao/js/jquery.metisMenu.js"></script>
+        <script src="Instituicao/js/morris/raphael-2.1.0.min.js"></script>
+        <script src="Instituicao/js/morris/morris.js"></script>
         <script src="Instituicao/js/custom.js"></script>
     </body>
 </html>
