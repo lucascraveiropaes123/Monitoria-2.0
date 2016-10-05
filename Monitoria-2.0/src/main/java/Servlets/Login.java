@@ -1,5 +1,7 @@
 package Servlets;
 
+import Bolsista.Bolsista;
+import Bolsista.BolsistaDAO;
 import Instituicao.Instituicao;
 import Instituicao.InstituicaoDAO;
 import java.io.IOException;
@@ -21,16 +23,18 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession();
             
             InstituicaoDAO iDAO = new InstituicaoDAO();
+            BolsistaDAO bDAO = new BolsistaDAO();
             Instituicao userLogado = new Instituicao(); 
                     
             String cnpj = request.getParameter("cnpj");
             String senha = request.getParameter("senha");
             
             List<Instituicao> instituicoes = iDAO.listInstituicao();
+            List<Bolsista> bolsistas = bDAO.listBolsista();
        
             System.out.println("\n\nTo no servlet...\n\n");
             
-            if(instituicoes != null)
+            if(instituicoes != null || bolsistas != null)
             {
                 for (Instituicao instituicao : instituicoes)
                 {            
@@ -45,21 +49,40 @@ public class Login extends HttpServlet {
                         userLogado.setNome(instituicao.getNome());
                         userLogado.setNum_cartao(instituicao.getNum_cartao());
                         userLogado.setSenha(instituicao.getSenha());
+                        
+                        session.setAttribute("Instituicao", userLogado);
+
+                        System.out.println("\n\nEntrei no IF\n\n");
+                        
+                        RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
+                        view.forward(request,response);   
                     }
                 }
                 
-                session.setAttribute("Instituicao", userLogado);
-
-                RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
-                view.forward(request,response);   
-
-                System.out.println("\n\nEntrei no IF\n\n");
+                for (Bolsista bolsista : bolsistas)
+                {            
+                    if(senha.equals(bolsista.getSenha()) && cnpj.equals(bolsista.getLogin()))
+                    {                  
+                        System.out.println("\nFuncionou porra! " + bolsista.getLogin());
+                        
+                        session.setAttribute("Bolsista", bolsista);
+                        
+                        RequestDispatcher view = request.getRequestDispatcher("IndexBolsista.jsp");
+                        view.forward(request,response);   
+                    }
+                    else
+                    {
+                        System.out.println("\n\nNão consegui logar...\n\n");
+                        RequestDispatcher view = request.getRequestDispatcher("Error.jsp");
+                        view.forward(request,response); 
+                    }
+                }
             }
             else
             {
                 System.out.println("\n\nNão consegui logar...\n\n");
                 RequestDispatcher view = request.getRequestDispatcher("Error.jsp");
-                view.forward(request,response);  
+                view.forward(request,response); 
             }
         } finally {
             out.close();

@@ -1,3 +1,4 @@
+<%@page import="Bolsista.Bolsista"%>
 <%@page import="Instituicao.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -5,11 +6,17 @@
 <%
     Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
     
+    Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
+    
     String link= "Login.jsp";
     
     if(instituicao != null)
     {
         link= "Index.jsp";
+    }
+    else if(bolsista != null)
+    {
+        link= "IndexBolsista.jsp";
     }
 %>
 
@@ -27,7 +34,7 @@
             <div class="form">
                 <h1><b>Erro 404</b><h1>
                 <p class="error">Não foi possível exibir a página ou ao comando<br><br>
-                            <a href="<%=link%>">Deseja voltar ao início?</a>
+                <a href="<%=link%>">Deseja voltar ao início?</a>
                 </p>
             </div>
         </div>

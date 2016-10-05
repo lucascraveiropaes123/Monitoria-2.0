@@ -137,7 +137,8 @@
                 <version>2.1.1</version>                
                 <configuration>
                     <warName>Monitoria</warName>
-                    <outputDirectory>/home/lucas/glassfish-4.0/glassfish/domains/domain1/applications</outputDirectory>
+                    <!--outputDirectory>/home/lucas/glassfish-4.0/glassfish/domains/domain1/applications</outputDirectory-->
+                    <outputDirectory>Computador/usr/local/glassfish-4.1.1/glassfish/domains/domain1/applications</outputDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>

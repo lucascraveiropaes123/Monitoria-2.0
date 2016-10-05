@@ -4,7 +4,6 @@ import Bolsista.Bolsista;
 import Bolsista.BolsistaDAO;
 import Disciplina.Disciplina;
 import Disciplina.DisciplinaDAO;
-import Instituicao.Instituicao;
 import Professor.Professor;
 import Professor.ProfessorDAO;
 import java.io.IOException;
@@ -23,6 +22,9 @@ public class OpcoesDisciplina extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            
+            System.out.println("Cheguei no servlet");
+                        
             HttpSession session = request.getSession();
             
             DisciplinaDAO dDAO = new DisciplinaDAO();
@@ -77,11 +79,9 @@ public class OpcoesDisciplina extends HttpServlet {
                 {
                     dDAO.deleteDisciplina(id);
 
-                    RequestDispatcher view = request.getRequestDispatcher("ListarDisciplina.jsp");
-                    view.forward(request,response); 
+                    RequestDispatcher view = request.getRequestDispatcher("ListarDisciplinas.jsp");
+            view.forward(request,response); 
                 }
-                
-                
             }
             else
             {

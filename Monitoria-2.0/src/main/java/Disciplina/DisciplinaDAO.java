@@ -108,10 +108,9 @@ public class DisciplinaDAO {
         try{
             tx = session.beginTransaction();
             
+            Disciplina disciplina = (Disciplina)session.get(Disciplina.class, DisciplinaID); 
             
-            
-            Disciplina disciplina = getDisciplina(DisciplinaID);
-//(Disciplina)session.get(Disciplina.class, DisciplinaID); 
+            System.out.println("ID: " + DisciplinaID);
             
             session.delete(disciplina); 
             

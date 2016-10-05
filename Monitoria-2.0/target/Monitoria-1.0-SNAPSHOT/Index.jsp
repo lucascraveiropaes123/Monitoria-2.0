@@ -37,7 +37,9 @@
                 <a class="navbar-brand" href="../index.jsp"><%=instituicao.getNome()%></a> 
             </div>
             <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-                <a href="#" class="btn btn-danger square-btn-adjust">Sair</a>
+                <form action="Logout">
+                    <button type="submit" class="btn btn-danger square-btn-adjust">Sair</button>
+                </form>
             </div>
         </nav>   
            <!-- /. NAV TOP  -->
