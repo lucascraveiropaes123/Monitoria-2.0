@@ -1,4 +1,5 @@
 <%@page import="Bolsista.*"%>
+<%@page import="Planilha.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
@@ -37,9 +38,7 @@
                 <a class="navbar-brand" href="../index.jsp"><%=bolsista.getPrimeiro_nome()%></a> 
             </div>
             <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-                <form action="Logout">
-                    <button type="submit" class="btn btn-danger square-btn-adjust">Sair</button>
-                </form>
+                <a href="#" class="btn btn-danger square-btn-adjust">Sair</a>
             </div>
         </nav>   
            <!-- /. NAV TOP  -->
@@ -59,7 +58,7 @@
                                 <a href="#">Listar<span class="fa arrow"></span></a>
                             </li>
                             <li>
-                                <a href="#">Cadastrar<span class="fa arrow"></span></a>
+                                <a href="CadastrarPlanilha.jsp">Cadastrar<span class="fa arrow"></span></a>
                             </li>
                         </ul>
                     </li>
@@ -134,11 +133,10 @@
                 </a>
             </div>
         </div>
-           
+        
         <script src="Instituicao/js/jquery-1.10.2.js"></script>
         <script src="Instituicao/js/bootstrap.min.js"></script>
         <script src="Instituicao/js/jquery.metisMenu.js"></script>
-        
         <script src="Instituicao/js/custom.js"></script>
     </body>
 </html>

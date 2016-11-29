@@ -1,4 +1,17 @@
+<%@page import="Bolsista.Bolsista"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
+    
+    if(bolsista != null)
+    {
+        RequestDispatcher view = request.getRequestDispatcher("IndexBolsista.jsp");
+        view.forward(request,response);
+    }
+    else
+    {
+%>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,3 +52,6 @@
         <script src="Login/js/index.js"></script>    
   </body>
 </html>
+<%
+    }
+%>

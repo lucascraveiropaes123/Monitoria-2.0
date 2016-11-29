@@ -48,6 +48,10 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>Servlets.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastroPlanilha</servlet-name>
+        <servlet-class>Servlets.CadastroPlanilha</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroPlanilha</servlet-name>
+        <url-pattern>/CadastroPlanilha</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

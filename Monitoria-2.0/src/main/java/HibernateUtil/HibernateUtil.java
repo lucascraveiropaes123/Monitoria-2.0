@@ -3,6 +3,7 @@ package HibernateUtil;
 import Bolsista.Bolsista;
 import Disciplina.Disciplina;
 import Instituicao.Instituicao;
+import Planilha.Planilha;
 import Professor.Professor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +19,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(Instituicao.class)
                     .addAnnotatedClass(Professor.class)
                     .addAnnotatedClass(Bolsista.class)
-                    .addAnnotatedClass(Disciplina.class);
+                    .addAnnotatedClass(Disciplina.class)
+                    .addAnnotatedClass(Planilha.class);
             
             factory = configuration.buildSessionFactory();
         } catch (Throwable ex) {
