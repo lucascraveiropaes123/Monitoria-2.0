@@ -55,7 +55,7 @@
                         <a href="#"><i class="fa fa-desktop fa-3x"></i> Planilhas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Listar<span class="fa arrow"></span></a>
+                                <a href="ListarPlanilhas.jsp">Listar<span class="fa arrow"></span></a>
                             </li>
                             <li>
                                 <a href="CadastrarPlanilha.jsp">Cadastrar<span class="fa arrow"></span></a>

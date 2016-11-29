@@ -50,6 +50,33 @@ public class PlanilhaDAO {
         return planilha;
     }
     
+    public List<Planilha> alphabeticListPlanilha(){
+        List <Planilha> planilhas = (List<Planilha>) listPlanilha();
+        
+        Integer[][] valores = null;
+        Integer[] ordem = null;
+        int i=0;
+
+        for(Planilha planilha : planilhas)
+        {
+            valores[i][i] = planilha.getId_planilha();
+            valores[i][i+1] = Integer.parseInt(planilha.getHora_entrada());
+            valores[i][i+2] = Integer.parseInt(planilha.getMin_entrada());
+            i++;
+        }
+        
+        i=0;
+        
+        for(Planilha planilha : planilhas)
+        {
+            if(valores[i][i] < valores[i+1][i])
+            {
+            }
+        }
+                
+        return planilhas;
+    }
+    
     public Planilha getPlanilha(Integer PlanilhaID){
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;

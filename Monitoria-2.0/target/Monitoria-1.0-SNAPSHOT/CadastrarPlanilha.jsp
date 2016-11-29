@@ -6,7 +6,7 @@
 <%
     Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
     
-    int hora = Calendar.getInstance().get(Calendar.HOUR);
+    int hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     int minuto = Calendar.getInstance().get(Calendar.MINUTE);
 %>
 
@@ -59,7 +59,7 @@
                         <a href="#"><i class="fa fa-desktop fa-3x"></i> Planilhas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Listar<span class="fa arrow"></span></a>
+                                <a href="ListarPlanilhas.jsp">Listar<span class="fa arrow"></span></a>
                             </li>
                             <li>
                                 <a href="CadastrarPlanilha.jsp">Cadastrar<span class="fa arrow"></span></a>
@@ -112,7 +112,7 @@
                                 
                                 <label>
                                     <input class="" style="max-width: 60px;" type="number" name="hora_entrada" min="0" max="24" value="<%=hora%>"/>:
-                                    <input class="" style="max-width: 60px; margin-left:-.4em" type="number" name="min_entrada" min="0" max="60" value="<%=minuto%>"/>
+                                    <input class="" style="max-width: 60px; margin-left:-.4em" type="number" name="min_entrada" min="00" max="60" value="<%=minuto%>"/>
                                  </label>              
                                 
                                 <input class="but but-rc" type="submit" value="Cadastrar" style="background-color: #C90000; text: bold; padding-left:14px; color:white; margin-top: 1em;">

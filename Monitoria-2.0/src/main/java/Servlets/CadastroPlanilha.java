@@ -40,6 +40,7 @@ public class CadastroPlanilha extends HttpServlet {
             
             planilha.setData_dia(Integer.toString(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)));
             planilha.setData_mes(Integer.toString(Calendar.getInstance().get(Calendar.MONTH)));
+            planilha.setData_ano(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
             
             Integer ID = pDAO.addPlanilha(planilha);
             
