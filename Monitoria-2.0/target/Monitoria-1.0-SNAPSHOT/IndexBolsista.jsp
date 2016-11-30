@@ -55,10 +55,13 @@
                         <a href="#"><i class="fa fa-desktop fa-3x"></i> Planilhas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="ListarPlanilhas.jsp">Listar<span class="fa arrow"></span></a>
+                                <a href="ListarPlanilhas.jsp">Listar</a>
                             </li>
                             <li>
-                                <a href="CadastrarPlanilha.jsp">Cadastrar<span class="fa arrow"></span></a>
+                                <a href="CadastrarPlanilha.jsp">Cadastrar</a>
+                            </li>
+                            <li>
+                                <a href="ListaSelecaoPlanilha.jsp">Atualizar</a>
                             </li>
                         </ul>
                     </li>
@@ -66,7 +69,7 @@
                         <a  href="Instituicao/Relatorios.jsp"><i class="fa fa-qrcode fa-3x"></i> Relatórios</a>
                     </li>           
                     <li>
-                        <a  href="Instituicao/Perfil.jsp"><i class="fa fa-square-o fa-3x"></i> Perfil</a>
+                        <a  href="PerfilBolsista.jsp"><i class="fa fa-square-o fa-3x"></i> Perfil</a>
                     </li>
                 </ul>
             </div>

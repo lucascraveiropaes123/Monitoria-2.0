@@ -59,10 +59,13 @@
                         <a href="#"><i class="fa fa-desktop fa-3x"></i> Planilhas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="ListarPlanilhas.jsp">Listar<span class="fa arrow"></span></a>
+                                <a href="ListarPlanilhas.jsp">Listar</a>
                             </li>
                             <li>
-                                <a href="CadastrarPlanilha.jsp">Cadastrar<span class="fa arrow"></span></a>
+                                <a href="CadastrarPlanilha.jsp">Cadastrar</a>
+                            </li>
+                            <li>
+                                <a href="ListaSelecaoPlanilha.jsp">Atualizar</a>
                             </li>
                         </ul>
                     </li>
@@ -80,79 +83,66 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Cadastro de Planilhas</h2>   
-                        <h5>As informaçoes abaixo ficarao salvas para registro das atividades no laboratorio</h5>
+                     <h2>Planilhas diárias</h2>   
+                        <h5>As informaçoes abaixo são relacionadas às atividas efetuadas nas dependências da escola</h5>
                     </div>
                 </div>             
                 <div class="row" style="margin-top: 2em">
-                    <!--div class="col-md-3 col-sm-6 col-xs-6"-->           
-                        <div class="col-lg-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Basic Table
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table" style="max-width:100%; overflow: auto;">
-                                            <thead>
-                                                <tr>
-                                                    <th>Entrada</th>
-                                                    <th>Saida</th>
-                                                    <th>Nome</th>
-                                                    <th>Computador</th>
-                                                    <th>Laboratorio</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <%
-                                                for (Planilha planilha : planilhas)
-                                                {
-                                                    String nomeProfessor = null;
-
-                                                    Disciplina disciplina = dDAO.getDisciplina(Integer.parseInt(bolsista.getMateria()));
-
-                                                    for (Professor professor : professores)
-                                                    {
-                                                        if(professor.getMateria().equals(bolsista.getMateria()))
-                                                        {
-                                                            nomeProfessor = professor.getNome_completo();
-                                                        }
-                                                    }
-                                            %>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>Mark</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>Mark</td>
-                                                    <td>Mark</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td>Mark</td>
-                                                    <td>Mark</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.panel-body -->
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Algum texto
                             </div>
-                            <!-- /.panel -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table" style="max-width:100%; overflow: auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">Entrada</th>
+                                                <th style="text-align: center">Saida</th>
+                                                <th style="text-align: center">Nome</th>
+                                                <th style="text-align: center">Computador</th>
+                                                <th style="text-align: center">Laboratorio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <%
+                                            for (Planilha planilha : planilhas)
+                                            {
+                                                String saida = "";
+                                                
+                                                System.out.println(planilha.getVisitante());
+                                                System.out.println("." + planilha.getHora_saida()+".");
+                                                System.out.println("." + planilha.getMin_saida()+".");
+                                                        
+                                                if(planilha.getHora_saida().equals(" ") && planilha.getMin_saida().equals(" "))
+                                                {
+                                                    saida = "";
+                                                }
+                                                else
+                                                {
+                                                    saida = planilha.getHora_saida() + "h" + planilha.getMin_saida();
+                                                }
+                                                
+                                                String entrada = planilha.getHora_entrada() + "h" + planilha.getMin_entrada();
+                                        %>
+                                            <tr>
+                                                <td style="text-align: center"><%=entrada%></td>
+                                                <td style="text-align: center"><%=saida%></td>
+                                                <td style="text-align: center"><%=planilha.getVisitante()%></td>
+                                                <td style="text-align: center"><%=planilha.getComputador()%></td>
+                                                <td style="text-align: center"><%=planilha.getLaboratorio()%></td>
+                                            </tr>
+                                        <%
+                                            }
+
+                                        %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    <!--/div-->
+                    </div>
                 </div>          
             </div>       
         </div>

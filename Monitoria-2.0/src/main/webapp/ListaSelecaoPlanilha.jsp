@@ -1,13 +1,13 @@
-<%@page import="java.util.Calendar"%>
+<%@page import="java.util.List"%>
 <%@page import="Bolsista.*"%>
 <%@page import="Planilha.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%
     Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
     
-    int hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-    int minuto = Calendar.getInstance().get(Calendar.MINUTE);
+    PlanilhaDAO pDAO = new PlanilhaDAO();
+    
+    List <Planilha> planilhas = (List<Planilha>)pDAO.listPlanilha();
 %>
 
 
@@ -83,43 +83,66 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Cadastro de Planilhas</h2>   
-                        <h5>As informaçoes abaixo ficarao salvas para registro das atividades no laboratorio</h5>
+                     <h2>Planilhas diárias</h2>   
+                        <h5>As informaçoes abaixo são relacionadas às atividas efetuadas nas dependências da escola</h5>
                     </div>
                 </div>             
                 <div class="row" style="margin-top: 2em">
-                    <div class="col-md-3 col-sm-6 col-xs-6">           
-                        <form role="form" action="CadastroPlanilha">
-                            <div class="form-group">
-                                <label style="margin-top: 1em;">Nome do usuário: </label>
-                                <input class="form-control" name="nome_completo_visitante" placeholder="Digite o nome completo do usuário" />
+                    <div class="col-lg-12">
+                        <form role="form" action="OpcoesPlanilha" id="Atualizar" style="margin-top: 1em">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Escolha a atividade para atualizar
+                                </div>
                                 
-                                <label style="margin-top: 1em;">Documento </label>
-                                <select name="documento">
-                                    <option style="color:black" value="-">Selecione o tipo de documento</option>
-                                    <option style="color:black" value="Identidade">Identidade</option>
-                                    <option style="color:black" value="CPF">CPF</option>
-                                    <option style="color:black" value="Carteirinha">Carteira Escola</option>
-                                </select>
-                                                                
-                                <label style="margin-top: 1em;">N° do Documento </label>
-                                <input class="form-control" name="num_documento" placeholder="Digite o número do documento" />
-                         
-                                <label style="margin-top: 1em;">Computador: </label>
-                                <input class="form-control" name="computador" placeholder="Digite o número do computador" />
-                         
-                                <label style="margin-top: 1em;">Laboratório: </label>
-                                <input class="form-control" name="laboratorio" placeholder="Digite o nome/número do laboratório" />
-                                
-                                <label style="margin-top: 1em;">Hora de Entrada </label>
-                                
-                                <label>
-                                    <input class="" style="max-width: 60px;" type="number" name="hora_entrada" min="0" max="24" value="<%=hora%>"/>:
-                                    <input class="" style="max-width: 60px; margin-left:-.4em" type="number" name="min_entrada" min="00" max="60" value="<%=minuto%>"/>
-                                 </label>              
-                                
-                                <input class="but but-rc" type="submit" value="Cadastrar" style="background-color: #C90000; text: bold; padding-left:14px; color:white; margin-top: 1em;">
-                            </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table" style="max-width:100%; overflow: auto;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center">Opção</th>
+                                                    <th style="text-align: center">Entrada</th>
+                                                    <th style="text-align: center">Saida</th>
+                                                    <th style="text-align: center">Nome</th>
+                                                    <th style="text-align: center">Computador</th>
+                                                    <th style="text-align: center">Laboratorio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <%
+                                                for (Planilha planilha : planilhas)
+                                                {
+                                                    String saida = "";
+                                                        
+                                                    if(planilha.getHora_saida().equals(" ") && planilha.getMin_saida().equals(" "))
+                                                    {
+                                                        saida = "";
+                                                    }
+                                                    else
+                                                    {
+                                                        saida = planilha.getHora_saida() + "h" + planilha.getMin_saida();
+                                                    }
+
+                                                    String entrada = planilha.getHora_entrada() + "h" + planilha.getMin_entrada();
+                                            %>
+                                                <tr style="text-align: center">
+                                                    <td><input type="radio" name="planilha" id="planilhaSelecionada" value="<%=planilha.getId_planilha()%>"/></td>
+                                                    <td><%=entrada%></td>
+                                                    <td><%=saida%></td>
+                                                    <td><%=planilha.getVisitante()%></td>
+                                                    <td><%=planilha.getComputador()%></td>
+                                                    <td><%=planilha.getLaboratorio()%></td>
+                                                </tr>
+                                            <%
+                                                }
+                                            %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>   
+                            </div>  
+                                            
+                            <button type="submit" class="btn btn-primary">Próxima Página</button></b>
                         </form>
                     </div>
                 </div>          

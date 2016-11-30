@@ -6,6 +6,8 @@
 <%
     Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
     
+    Planilha planilha = (Planilha)session.getAttribute("PlanilhaVelha");
+    
     int hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     int minuto = Calendar.getInstance().get(Calendar.MINUTE);
 %>
@@ -83,42 +85,72 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Cadastro de Planilhas</h2>   
+                     <h2>Atualização de Planilhas</h2>   
                         <h5>As informaçoes abaixo ficarao salvas para registro das atividades no laboratorio</h5>
                     </div>
                 </div>             
                 <div class="row" style="margin-top: 2em">
                     <div class="col-md-3 col-sm-6 col-xs-6">           
-                        <form role="form" action="CadastroPlanilha">
+                        <form role="form" action="AtualizarPlanilha">
                             <div class="form-group">
                                 <label style="margin-top: 1em;">Nome do usuário: </label>
-                                <input class="form-control" name="nome_completo_visitante" placeholder="Digite o nome completo do usuário" />
+                                
+                                <input class="form-control" name="nome_completo_visitante" value="<%=planilha.getVisitante()%>" />
                                 
                                 <label style="margin-top: 1em;">Documento </label>
-                                <select name="documento">
-                                    <option style="color:black" value="-">Selecione o tipo de documento</option>
-                                    <option style="color:black" value="Identidade">Identidade</option>
-                                    <option style="color:black" value="CPF">CPF</option>
-                                    <option style="color:black" value="Carteirinha">Carteira Escola</option>
-                                </select>
+                                <%
+                                    if(planilha.getTipo_documento().equals("Identidade"))
+                                    {%>
+                                        <select name="documento">
+                                            <option style="color:black" value="-">Selecione o tipo de documento</option>
+                                            <option style="color:black" value="CPF">CPF</option>
+                                            <option style="color:black" value="Identidade" selected>Identidade</option>
+                                            <option style="color:black" value="Carteirinha">Carteira Escola</option>
+                                        </select>
+                                  <%}
+                                    else if(planilha.getTipo_documento().equals("CPF"))
+                                    {%>
+                                        <select name="documento">
+                                            <option style="color:black" value="-">Selecione o tipo de documento</option>
+                                            <option style="color:black" value="CPF" selected>CPF</option>
+                                            <option style="color:black" value="Identidade">Identidade</option>
+                                            <option style="color:black" value="Carteirinha">Carteira Escola</option>
+                                        </select>
+                                  <%}
+                                    else if(planilha.getTipo_documento().equals("Carteirinha"))
+                                    {%>
+                                        <select name="documento">
+                                            <option style="color:black" value="-">Selecione o tipo de documento</option>
+                                            <option style="color:black" value="CPF">CPF</option>
+                                            <option style="color:black" value="Identidade">Identidade</option>
+                                            <option style="color:black" value="Carteirinha" selected>Carteira Escola</option>
+                                        </select>
+                                  <%}
+                                
+                                %>
                                                                 
                                 <label style="margin-top: 1em;">N° do Documento </label>
-                                <input class="form-control" name="num_documento" placeholder="Digite o número do documento" />
+                                <input class="form-control" name="num_documento" value="<%=planilha.getNum_documento()%>" />
                          
                                 <label style="margin-top: 1em;">Computador: </label>
-                                <input class="form-control" name="computador" placeholder="Digite o número do computador" />
+                                <input class="form-control" name="computador" value="<%=planilha.getComputador()%>" />
                          
                                 <label style="margin-top: 1em;">Laboratório: </label>
-                                <input class="form-control" name="laboratorio" placeholder="Digite o nome/número do laboratório" />
+                                <input class="form-control" name="laboratorio" value="<%=planilha.getLaboratorio()%>" />
                                 
                                 <label style="margin-top: 1em;">Hora de Entrada </label>
-                                
                                 <label>
-                                    <input class="" style="max-width: 60px;" type="number" name="hora_entrada" min="0" max="24" value="<%=hora%>"/>:
-                                    <input class="" style="max-width: 60px; margin-left:-.4em" type="number" name="min_entrada" min="00" max="60" value="<%=minuto%>"/>
+                                    <input style="max-width: 60px;" type="number" name="hora_entrada" min="0" max="24" value="<%=planilha.getHora_entrada()%>" disabled/>:
+                                    <input style="max-width: 60px; margin-left:-.4em;" type="number" name="min_entrada" min="00" max="60" value="<%=planilha.getMin_entrada()%>" disabled/>
                                  </label>              
                                 
-                                <input class="but but-rc" type="submit" value="Cadastrar" style="background-color: #C90000; text: bold; padding-left:14px; color:white; margin-top: 1em;">
+                                <label style="margin-top: 1em;">Hora de Saida </label>
+                                <label>
+                                    <input style="max-width: 60px;" type="number" name="hora_saida" min="0" max="24" value="<%=hora%>"/>:
+                                    <input style="max-width: 60px; margin-left:-.4em" type="number" name="min_saida" min="00" max="60" value="<%=minuto%>"/>
+                                 </label>              
+                                
+                                <input class="but but-rc" type="submit" value="Atualizar" style="background-color: #C90000; text: bold; padding-left:14px; color:white; margin-top: 1em;">
                             </div>
                         </form>
                     </div>

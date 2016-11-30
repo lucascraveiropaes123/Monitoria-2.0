@@ -1,8 +1,7 @@
 package Servlets;
 
 import Bolsista.Bolsista;
-import Planilha.Planilha;
-import Planilha.PlanilhaDAO;
+import Planilha.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -13,50 +12,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class CadastroPlanilha extends HttpServlet {
+public class AtualizarPlanilha extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             HttpSession session = request.getSession();
-            
-            Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
-            
+                                    
             PlanilhaDAO pDAO = new PlanilhaDAO();
-            Planilha planilha = new Planilha();
+            Planilha planilha = (Planilha)session.getAttribute("PlanilhaVelha");
             
             planilha.setVisitante(request.getParameter("nome_completo_visitante"));
             planilha.setTipo_documento(request.getParameter("documento"));
             planilha.setNum_documento(request.getParameter("num_documento"));
             planilha.setComputador(request.getParameter("computador"));
             planilha.setLaboratorio(request.getParameter("laboratorio"));
-            planilha.setHora_entrada(request.getParameter("hora_entrada"));
-            planilha.setMin_entrada(request.getParameter("min_entrada"));
             
-            planilha.setHora_saida(" ");
-            planilha.setMin_saida(" ");
-            planilha.setBolsista(bolsista.getId_bolsista());
-            
+            planilha.setHora_saida(request.getParameter("hora_saida"));
+            planilha.setMin_saida(request.getParameter("min_saida"));
+            planilha.setBolsista(planilha.getBolsista());
             
             planilha.setData_dia(Integer.toString(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)));
             planilha.setData_mes(Integer.toString(Calendar.getInstance().get(Calendar.MONTH)));
             planilha.setData_ano(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
             
-            Integer ID = pDAO.addPlanilha(planilha);
+            //System.out.println("Min: " + );
             
-            if(ID != null)
-            {
-                session.setAttribute("Planilha", planilha);
-                
-                RequestDispatcher view = request.getRequestDispatcher("IndexBolsista.jsp");
-                view.forward(request,response);
-            }
-            else
-            {
-                RequestDispatcher view = request.getRequestDispatcher("Error.jsp");
-                view.forward(request,response);
-            }
+            Integer ID = planilha.getId_planilha();
+                    
+            pDAO.updatePlanilha(ID, planilha);
+            
+            RequestDispatcher view = request.getRequestDispatcher("IndexBolsista.jsp");
+            view.forward(request,response);
         } finally {
             out.close();
         }

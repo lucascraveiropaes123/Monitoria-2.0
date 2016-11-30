@@ -1,6 +1,7 @@
 package Planilha;
 
 import HibernateUtil.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -50,33 +51,6 @@ public class PlanilhaDAO {
         return planilha;
     }
     
-    public List<Planilha> alphabeticListPlanilha(){
-        List <Planilha> planilhas = (List<Planilha>) listPlanilha();
-        
-        Integer[][] valores = null;
-        Integer[] ordem = null;
-        int i=0;
-
-        for(Planilha planilha : planilhas)
-        {
-            valores[i][i] = planilha.getId_planilha();
-            valores[i][i+1] = Integer.parseInt(planilha.getHora_entrada());
-            valores[i][i+2] = Integer.parseInt(planilha.getMin_entrada());
-            i++;
-        }
-        
-        i=0;
-        
-        for(Planilha planilha : planilhas)
-        {
-            if(valores[i][i] < valores[i+1][i])
-            {
-            }
-        }
-                
-        return planilhas;
-    }
-    
     public Planilha getPlanilha(Integer PlanilhaID){
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
@@ -117,14 +91,18 @@ public class PlanilhaDAO {
             planilha.setComputador(planilhaNova.getComputador());
             planilha.setData_dia(planilhaNova.getData_dia());
             planilha.setData_mes(planilhaNova.getData_mes());
-            
+            planilha.setData_ano(planilhaNova.getData_ano());
             planilha.setHora_entrada(planilhaNova.getHora_entrada());
             planilha.setHora_saida(planilhaNova.getHora_saida());
+            planilha.setMin_entrada(planilhaNova.getMin_entrada());
+            planilha.setMin_saida(planilhaNova.getMin_saida());
             planilha.setId_planilha(planilhaNova.getId_planilha());
             planilha.setLaboratorio(planilhaNova.getLaboratorio());
             planilha.setNum_documento(planilhaNova.getNum_documento());
             planilha.setTipo_documento(planilhaNova.getTipo_documento());
             planilha.setVisitante(planilhaNova.getVisitante());
+            
+            System.out.println("Min: " + planilha.getMin_saida());
             
             session.update(planilha); 
             
