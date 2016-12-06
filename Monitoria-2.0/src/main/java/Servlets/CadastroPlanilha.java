@@ -34,8 +34,8 @@ public class CadastroPlanilha extends HttpServlet {
             planilha.setHora_entrada(request.getParameter("hora_entrada"));
             planilha.setMin_entrada(request.getParameter("min_entrada"));
             
-            planilha.setHora_saida(" ");
-            planilha.setMin_saida(" ");
+            planilha.setHora_saida(null);
+            planilha.setMin_saida(null);
             planilha.setBolsista(bolsista.getId_bolsista());
             
             
