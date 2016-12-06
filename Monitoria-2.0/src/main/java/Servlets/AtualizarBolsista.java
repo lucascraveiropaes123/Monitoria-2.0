@@ -2,6 +2,7 @@ package Servlets;
 
 import Bolsista.Bolsista;
 import Bolsista.BolsistaDAO;
+import Instituicao.Instituicao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,24 +20,56 @@ public class AtualizarBolsista extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             HttpSession session = request.getSession();
-            
-            BolsistaDAO bDAO = new BolsistaDAO();
-            Bolsista bolsista = new Bolsista();
-            
-            Bolsista bolsistaVelho = (Bolsista)session.getAttribute("BolsistaVelho");
-            
-            String nomeCompleto = request.getParameter("primeiroNome") + " " + request.getParameter("sobrenome");
-            
-            bolsista.setLogin(request.getParameter("login"));
-            bolsista.setMateria(request.getParameter("materia"));
-            bolsista.setNome_completo(nomeCompleto);
-            bolsista.setPrimeiro_nome(request.getParameter("primeiroNome"));
-            bolsista.setSenha(request.getParameter("senha"));
-            
-            bDAO.updateBolsista(bolsistaVelho.getId_bolsista(), bolsista);
 
-            RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
-            view.forward(request,response);
+            Instituicao instituicaoLog = (Instituicao)session.getAttribute("Instituicao");
+            Bolsista bolsistaLog = (Bolsista)session.getAttribute("Bolsista");
+                
+            if(instituicaoLog != null)
+            {
+                BolsistaDAO bDAO = new BolsistaDAO();
+                Bolsista bolsista = new Bolsista();
+
+                Bolsista bolsistaVelho = (Bolsista)session.getAttribute("BolsistaVelho");
+
+                String nomeCompleto = request.getParameter("primeiroNome") + " " + request.getParameter("sobrenome");
+
+                bolsista.setLogin(request.getParameter("login"));
+                bolsista.setMateria(request.getParameter("materia"));
+                bolsista.setNome_completo(nomeCompleto);
+                bolsista.setPrimeiro_nome(request.getParameter("primeiroNome"));
+                bolsista.setPrimeiro_nome(request.getParameter("sobrenome"));
+                bolsista.setSenha(request.getParameter("senha"));
+
+                bDAO.updateBolsista(bolsistaVelho.getId_bolsista(), bolsista);
+
+                RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
+                view.forward(request,response);
+            }
+            else if(bolsistaLog != null)
+            {
+                BolsistaDAO bDAO = new BolsistaDAO();
+                Bolsista bolsista = new Bolsista();
+
+                String nomeCompleto = request.getParameter("primeiroNome") + " " + request.getParameter("sobrenome");
+
+                bolsista.setLogin(request.getParameter("login"));
+                bolsista.setMateria(request.getParameter("materia"));
+                bolsista.setNome_completo(nomeCompleto);
+                bolsista.setPrimeiro_nome(request.getParameter("primeiroNome"));
+                bolsista.setPrimeiro_nome(request.getParameter("sobrenome"));
+                bolsista.setSenha(request.getParameter("senha"));
+
+                bDAO.updateBolsista(bolsistaLog.getId_bolsista(), bolsista);
+
+                RequestDispatcher view = request.getRequestDispatcher("PerfilBolsista.jsp");
+                view.forward(request,response);
+            }
+            else
+            {
+                RequestDispatcher view = request.getRequestDispatcher("Error.jsp");
+                view.forward(request,response);
+            }
+            
         } finally {
             out.close();
         }

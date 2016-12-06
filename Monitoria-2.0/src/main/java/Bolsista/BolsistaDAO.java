@@ -92,6 +92,7 @@ public class BolsistaDAO {
             bolsista.setMateria(bolsistaNova.getMateria());
             bolsista.setPrimeiro_nome(bolsistaNova.getPrimeiro_nome());
             bolsista.setNome_completo(bolsistaNova.getNome_completo());
+            bolsista.setSobrenome(bolsistaNova.getSobrenome());
             bolsista.setSenha(bolsistaNova.getSenha());
             
             session.update(bolsista); 

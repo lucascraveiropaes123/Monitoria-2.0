@@ -18,8 +18,8 @@ public class Bolsista implements Serializable {
     private Integer id_bolsista;     
     
     @Column(name="primeiro_nome")
-    private String primeiro_nome;
-    
+    private String primeiro_nome;    
+        
     @Column(name="nome_completo")
     private String nome_completo;
     
@@ -32,6 +32,9 @@ public class Bolsista implements Serializable {
     @Column(name="senha")
     private String senha;
 
+    @Column(name="sobrenome")
+    private String sobrenome;
+    
     public Integer getId_bolsista() {
         return id_bolsista;
     }
@@ -78,5 +81,13 @@ public class Bolsista implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 }

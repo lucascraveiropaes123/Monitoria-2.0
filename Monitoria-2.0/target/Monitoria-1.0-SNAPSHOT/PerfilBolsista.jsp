@@ -87,12 +87,14 @@
             <div id="page-inner">
                 <div class="col-md-4 col-sm-12 col-xs-12" >
                     <span>
-                        Nome: <%=bolsista.getNome_completo()%><br><br>
+                        Primeiro Nome: <%=bolsista.getPrimeiro_nome()%><br><br>
+                        Sobrenome: <%=bolsista.getSobrenome()%><br><br>
                         Login: <%=bolsista.getLogin()%><br><br>
-                        Senha: <%=senha%>
+                        Senha: <%=senha%><br><br>
+                        Matéria: <%=bolsista.getMateria()%>
                     </span>
                     <br><br>
-                    <a href="#"><button type="" class="btn btn-primary">Próxima Página</button></a>
+                    <a href="PerfilAtualizarBolsista.jsp"><button class="btn btn-primary">Atualizar Dados</button></a>
                 </div>
             </div>
         </div>

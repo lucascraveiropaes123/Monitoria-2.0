@@ -146,7 +146,7 @@
                                 <input class="form-control" name="primeiroNome" value="<%=bolsista.getPrimeiro_nome()%>" />
                                 
                                 <label style="margin-top: 1em;">Sobrenome: </label>
-                                <input class="form-control" name="sobrenome" placeholder="Digite o sobrenome do bolsista" />
+                                <input class="form-control" name="sobrenome" value="<%=bolsista.getSobrenome()%>" />
                                 
                                 <label style="margin-top: 1em;">Matéria: </label>
                                 

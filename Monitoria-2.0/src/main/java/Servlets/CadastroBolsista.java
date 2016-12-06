@@ -28,6 +28,7 @@ public class CadastroBolsista extends HttpServlet {
             bolsista.setMateria(request.getParameter("materia"));
             bolsista.setNome_completo(nomeCompleto);
             bolsista.setPrimeiro_nome(request.getParameter("primeiroNome"));
+            bolsista.setPrimeiro_nome(request.getParameter("sobrenome"));
             bolsista.setSenha(request.getParameter("senha"));
             
             Integer ID = pDAO.addBolsista(bolsista);
