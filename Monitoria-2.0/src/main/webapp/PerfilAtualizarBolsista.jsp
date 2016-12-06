@@ -4,11 +4,6 @@
 
 <%
     Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
-    
-    System.out.println("Nome:"+bolsista.getPrimeiro_nome());
-    System.out.println("Sobrenome:"+bolsista.getSobrenome());
-    System.out.println("Materia:"+bolsista.getMateria());
-    System.out.println("Senha"+bolsista.getSenha());
 %>
 
 

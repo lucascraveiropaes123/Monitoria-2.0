@@ -114,17 +114,22 @@
                                                 System.out.println(planilha.getVisitante());
                                                 System.out.println("." + planilha.getHora_saida()+".");
                                                 System.out.println("." + planilha.getMin_saida()+".");
+                                                
+                                                System.out.println("0");
                                                         
-                                                if(planilha.getHora_saida().equals(" ") && planilha.getMin_saida().equals(" "))
+                                                if(planilha.getHora_saida() == null && planilha.getMin_saida() == null)
                                                 {
                                                     saida = "";
+                                                    System.out.println("1");
                                                 }
                                                 else
                                                 {
                                                     saida = planilha.getHora_saida() + "h" + planilha.getMin_saida();
+                                                    System.out.println("2");
                                                 }
-                                                
+                                                System.out.println("3");
                                                 String entrada = planilha.getHora_entrada() + "h" + planilha.getMin_entrada();
+                                                System.out.println("4");
                                         %>
                                             <tr>
                                                 <td style="text-align: center"><%=entrada%></td>
@@ -134,6 +139,7 @@
                                                 <td style="text-align: center"><%=planilha.getLaboratorio()%></td>
                                             </tr>
                                         <%
+                                            System.out.println("5");
                                             }
 
                                         %>

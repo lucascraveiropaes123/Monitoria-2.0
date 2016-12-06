@@ -38,7 +38,7 @@
                 <a class="navbar-brand" href="../index.jsp"><%=bolsista.getPrimeiro_nome()%></a> 
             </div>
             <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-                <a href="#" class="btn btn-danger square-btn-adjust">Sair</a>
+                <input class="but btn-danger square-btn-adjust" type="submit" value="Sair" style="padding: .5em; padding-left: .9em; padding-right: .9em; margin-top: -0.2em;">
             </div>
         </nav>   
            <!-- /. NAV TOP  -->
