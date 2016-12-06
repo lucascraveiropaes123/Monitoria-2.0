@@ -90,7 +90,15 @@
                         </ul>
                     </li>
                     <li>
-                        <a  href="Instituicao/Relatorios.jsp"><i class="fa fa-qrcode fa-3x"></i> Relatórios</a>
+                        <a href="#"><i class="fa fa-list-alt fa-3x"></i>Relatórios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="CadastrarRelatoriosMonitoria.jsp">Monitoria</a>
+                                </li>
+                                <li>
+                                    <a href="CadastrarRelatorioIncidente.jsp">Incidentes</a>
+                                </li>
+                            </ul>
                     </li>
                     <li  >
                         <a  href="Instituicao/Tabelas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Tabelas salvas </a>
