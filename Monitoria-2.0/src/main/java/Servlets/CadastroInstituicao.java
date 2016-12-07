@@ -29,7 +29,7 @@ public class CadastroInstituicao extends HttpServlet {
             instituicao.setNum_cartao(request.getParameter("cartao"));
             instituicao.setSenha(request.getParameter("senha"));
             
-            String ID = iDAO.addInstituicao(instituicao);
+            Integer ID = iDAO.addInstituicao(instituicao);
                         
             if(ID != null)
             {

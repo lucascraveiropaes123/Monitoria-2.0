@@ -24,30 +24,19 @@ public class Login extends HttpServlet {
             
             InstituicaoDAO iDAO = new InstituicaoDAO();
             BolsistaDAO bDAO = new BolsistaDAO();
-            Instituicao userLogado = new Instituicao(); 
-                    
-            String cnpj = request.getParameter("cnpj");
-            String senha = request.getParameter("senha");
             
             List<Instituicao> instituicoes = iDAO.listInstituicao();
             List<Bolsista> bolsistas = bDAO.listBolsista();
+                    
+            Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+            String senha = request.getParameter("senha");
        
-            System.out.println("\n\nTo no servlet...\n\n");
-            
             if(instituicoes != null || bolsistas != null)
             {
                 for (Instituicao instituicao : instituicoes)
-                {            
+                {     
                     if(senha.equals(instituicao.getSenha()) && cnpj.equals(instituicao.getCnpj()))
-                    {             
-                        /*String CNPJ = instituicao.getCnpj();
-                        userLogado.setCnpj(CNPJ);
-
-                        userLogado.setEmail(instituicao.getEmail());
-                        userLogado.setNome(instituicao.getNome());
-                        userLogado.setNum_cartao(instituicao.getNum_cartao());
-                        userLogado.setSenha(instituicao.getSenha());*/
-                        
+                    {   
                         session.setAttribute("Instituicao", instituicao);
                         
                         RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
@@ -60,9 +49,9 @@ public class Login extends HttpServlet {
                 }
                 
                 for (Bolsista bolsista : bolsistas)
-                {            
+                {                      
                     if(senha.equals(bolsista.getSenha()) && cnpj.equals(bolsista.getLogin()))
-                    {         
+                    {    
                         session.setAttribute("Bolsista", bolsista);
                         
                         RequestDispatcher view = request.getRequestDispatcher("IndexBolsista.jsp");

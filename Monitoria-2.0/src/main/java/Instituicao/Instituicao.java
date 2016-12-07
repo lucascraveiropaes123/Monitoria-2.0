@@ -26,9 +26,6 @@ public class Instituicao implements Serializable {
     @Column(name="senha")
     private String senha;
 
-    @Column(name="instituicao_id")
-    private Integer instituicao_id;
-
     public String getNome() {
         return nome;
     }
@@ -67,14 +64,6 @@ public class Instituicao implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Integer getInstituicao_id() {
-        return instituicao_id;
-    }
-
-    public void setInstituicao_id(Integer instituicao_id) {
-        this.instituicao_id = instituicao_id;
     }
     
 }

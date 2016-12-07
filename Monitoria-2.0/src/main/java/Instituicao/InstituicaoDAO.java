@@ -10,14 +10,14 @@ import org.hibernate.Transaction;
 
 public class InstituicaoDAO {
     
-    public String addInstituicao (Instituicao instituicao){
+    public Integer addInstituicao (Instituicao instituicao){
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
-        String instituicaoID = null;
+        Integer instituicaoID = null;
         try{
             tx = session.beginTransaction();
                         
-            instituicaoID = (String) session.save(instituicao);
+            instituicaoID = (Integer)session.save(instituicao);
             
             tx.commit();
             
