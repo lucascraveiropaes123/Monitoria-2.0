@@ -20,6 +20,9 @@ public class Disciplina implements Serializable {
     @Column(name="nome")
     private String nome;
 
+    @Column(name="instituicao_id")
+    private Integer instituicao_id;
+
     public String getNome() {
         return nome;
     }
@@ -34,6 +37,14 @@ public class Disciplina implements Serializable {
 
     public void setKey_disciplina(Integer key_disciplina) {
         this.key_disciplina = key_disciplina;
+    }
+
+    public Integer getInstituicao_id() {
+        return instituicao_id;
+    }
+
+    public void setInstituicao_id(Integer instituicao_id) {
+        this.instituicao_id = instituicao_id;
     }
 
     

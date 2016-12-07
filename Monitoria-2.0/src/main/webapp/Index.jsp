@@ -90,16 +90,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a  href="Instituicao/Relatorios.jsp"><i class="fa fa-qrcode fa-3x"></i> Relatórios</a>
+                        <a  href="Relatorios.jsp"><i class="fa fa-qrcode fa-3x"></i> Relatórios</a>
                     </li>
                     <li  >
-                        <a  href="Instituicao/Tabelas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Tabelas salvas </a>
-                    </li>
-                    <li  >
-                        <a  href="Instituicao/Novatabela.jsp"><i class="fa fa-edit fa-3x"></i> Nova tabela </a>
-                    </li>                   
+                        <a  href="Planilhas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Planilhas </a>
+                    </li>               
                     <li>
-                        <a  href="Instituicao/Perfil.jsp"><i class="fa fa-square-o fa-3x"></i> Perfil</a>
+                        <a  href="PerfilInstituicao.jsp"><i class="fa fa-square-o fa-3x"></i> Perfil</a>
                     </li>
                 </ul>
             </div>
@@ -135,7 +132,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="">
+                <a href="PerfilInstituicao.jsp">
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="panel panel-primary text-center no-boder bg-color-red red">
                             <div class="panel-body">

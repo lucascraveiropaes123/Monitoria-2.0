@@ -32,6 +32,9 @@ public class Professor implements Serializable {
     @Column(name="senha")
     private String senha;
 
+    @Column(name="instituicao_id")
+    private Integer instituicao_id;
+
     public Integer getId_professor() {
         return id_professor;
     }
@@ -78,6 +81,14 @@ public class Professor implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Integer getInstituicao_id() {
+        return instituicao_id;
+    }
+
+    public void setInstituicao_id(Integer instituicao_id) {
+        this.instituicao_id = instituicao_id;
     }
     
 }

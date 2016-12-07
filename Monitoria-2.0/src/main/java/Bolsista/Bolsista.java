@@ -24,7 +24,7 @@ public class Bolsista implements Serializable {
     private String nome_completo;
     
     @Column(name="materia")
-    private String materia;
+    private Integer materia;
     
     @Column(name="login")
     private String login;
@@ -34,6 +34,9 @@ public class Bolsista implements Serializable {
 
     @Column(name="sobrenome")
     private String sobrenome;
+
+    @Column(name="instituicao_id")
+    private Integer instituicao_id;
     
     public Integer getId_bolsista() {
         return id_bolsista;
@@ -59,11 +62,11 @@ public class Bolsista implements Serializable {
         this.nome_completo = nome_completo;
     }
 
-    public String getMateria() {
+    public Integer getMateria() {
         return materia;
     }
 
-    public void setMateria(String materia) {
+    public void setMateria(Integer materia) {
         this.materia = materia;
     }
 
@@ -89,5 +92,13 @@ public class Bolsista implements Serializable {
 
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
+    }
+
+    public Integer getInstituicao_id() {
+        return instituicao_id;
+    }
+
+    public void setInstituicao_id(Integer instituicao_id) {
+        this.instituicao_id = instituicao_id;
     }
 }

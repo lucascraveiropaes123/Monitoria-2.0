@@ -12,7 +12,7 @@ public class Instituicao implements Serializable {
   
     @Id
     @Column(name= "cnpj")
-    private String cnpj;     
+    private Integer cnpj;     
     
     @Column(name="nome")
     private String nome;
@@ -26,6 +26,9 @@ public class Instituicao implements Serializable {
     @Column(name="senha")
     private String senha;
 
+    @Column(name="instituicao_id")
+    private Integer instituicao_id;
+
     public String getNome() {
         return nome;
     }
@@ -34,11 +37,11 @@ public class Instituicao implements Serializable {
         this.nome = nome;
     }
 
-    public String getCnpj() {
+    public Integer getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
+    public void setCnpj(Integer cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -64,6 +67,14 @@ public class Instituicao implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getInstituicao_id() {
+        return instituicao_id;
+    }
+
+    public void setInstituicao_id(Integer instituicao_id) {
+        this.instituicao_id = instituicao_id;
     }
     
 }

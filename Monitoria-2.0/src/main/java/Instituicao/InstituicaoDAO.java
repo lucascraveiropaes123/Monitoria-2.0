@@ -1,6 +1,8 @@
 package Instituicao;
 
+import Bolsista.*;
 import HibernateUtil.*; 
+import Professor.*;
 import java.util.List; 
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
@@ -16,8 +18,6 @@ public class InstituicaoDAO {
             tx = session.beginTransaction();
                         
             instituicaoID = (String) session.save(instituicao);
-            
-            //session.flush();                              
             
             tx.commit();
             
@@ -37,17 +37,13 @@ public class InstituicaoDAO {
         Transaction tx = null;
         List instituicao = null;
         try{
-                System.out.println("\n\n\n\nTô listando...\n\n\n");
-
                 tx = session.beginTransaction();
-
-                InstituicaoDAO instituicaoDAO = new InstituicaoDAO();
 
                 instituicao = session.createQuery("FROM Instituicao").list();  
                 
                 tx.commit();
                                 
-                System.out.println("Listei...");
+                System.out.println("Listado");
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
                 e.printStackTrace(); 
@@ -94,7 +90,7 @@ public class InstituicaoDAO {
             instituicao.setSenha(instituicaoAntiga.getSenha());
             
             instituicao.setNome(instituicaoAntiga.getNome());
-            
+                        
             instituicao.setNum_cartao(instituicaoAntiga.getNum_cartao());
                         
             session.update(instituicao); 
@@ -125,5 +121,41 @@ public class InstituicaoDAO {
         }finally {
             session.close(); 
         }
+    }
+    
+    public int numProfessores(Integer ID)
+    {
+        ProfessorDAO pDAO = new ProfessorDAO();
+        List<Professor> professores = (List<Professor>)pDAO.listProfessor();
+        
+        int i=0;
+        
+        for(Professor professor : professores)
+        {
+            if(professor.getInstituicao_id().equals(ID))
+            {
+                i++;
+            }
+        }
+        
+        return i;
+    }
+    
+    public int numBolsistas(Integer ID)
+    {
+        BolsistaDAO pDAO = new BolsistaDAO();
+        List<Bolsista> bolsistas = (List<Bolsista>)pDAO.listBolsista();
+        
+        int i=0;
+        
+        for(Bolsista bolsista : bolsistas)
+        {
+            if(bolsista.getInstituicao_id().equals(ID))
+            {
+                i++;
+            }
+        }
+        
+        return i;
     }
 }

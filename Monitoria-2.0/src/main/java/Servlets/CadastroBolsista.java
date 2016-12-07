@@ -25,7 +25,7 @@ public class CadastroBolsista extends HttpServlet {
             String nomeCompleto = request.getParameter("primeiroNome") + " " + request.getParameter("sobrenome");
             
             bolsista.setLogin(request.getParameter("login"));
-            bolsista.setMateria(request.getParameter("materia"));
+            bolsista.setMateria(Integer.parseInt(request.getParameter("materia")));
             bolsista.setNome_completo(nomeCompleto);
             bolsista.setPrimeiro_nome(request.getParameter("primeiroNome"));
             bolsista.setPrimeiro_nome(request.getParameter("sobrenome"));

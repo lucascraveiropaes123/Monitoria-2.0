@@ -55,6 +55,9 @@ public class Planilha implements Serializable {
 
     @Column(name="min_saida")
     private String min_saida;
+
+    @Column(name="instituicao_id")
+    private Integer instituicao_id;
     
     public Integer getId_planilha() {
         return id_planilha;
@@ -166,5 +169,13 @@ public class Planilha implements Serializable {
 
     public void setData_ano(String data_ano) {
         this.data_ano = data_ano;
+    }
+
+    public Integer getInstituicao_id() {
+        return instituicao_id;
+    }
+
+    public void setInstituicao_id(Integer instituicao_id) {
+        this.instituicao_id = instituicao_id;
     }
 }

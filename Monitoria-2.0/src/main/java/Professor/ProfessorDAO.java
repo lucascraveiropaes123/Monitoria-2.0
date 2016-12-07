@@ -87,6 +87,7 @@ public class ProfessorDAO {
             professor.setPrimeiro_nome(professorNova.getPrimeiro_nome());
             professor.setNome_completo(professorNova.getNome_completo());
             professor.setSenha(professorNova.getSenha());
+            professor.setInstituicao_id(professorNova.getInstituicao_id());
             
             session.update(professor); 
             

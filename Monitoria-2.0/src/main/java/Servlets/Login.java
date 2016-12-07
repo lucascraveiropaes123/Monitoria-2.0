@@ -39,32 +39,30 @@ public class Login extends HttpServlet {
                 for (Instituicao instituicao : instituicoes)
                 {            
                     if(senha.equals(instituicao.getSenha()) && cnpj.equals(instituicao.getCnpj()))
-                    {                  
-                        System.out.println("\nFuncionou porra! " + instituicao.getCnpj());
-
-                        String CNPJ = instituicao.getCnpj();
+                    {             
+                        /*String CNPJ = instituicao.getCnpj();
                         userLogado.setCnpj(CNPJ);
 
                         userLogado.setEmail(instituicao.getEmail());
                         userLogado.setNome(instituicao.getNome());
                         userLogado.setNum_cartao(instituicao.getNum_cartao());
-                        userLogado.setSenha(instituicao.getSenha());
+                        userLogado.setSenha(instituicao.getSenha());*/
                         
-                        session.setAttribute("Instituicao", userLogado);
-
-                        System.out.println("\n\nEntrei no IF\n\n");
+                        session.setAttribute("Instituicao", instituicao);
                         
                         RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
                         view.forward(request,response);   
+                    }
+                    else
+                    {
+                        System.out.println("\n\nNão é instituição...\n\n");
                     }
                 }
                 
                 for (Bolsista bolsista : bolsistas)
                 {            
                     if(senha.equals(bolsista.getSenha()) && cnpj.equals(bolsista.getLogin()))
-                    {                  
-                        System.out.println("\nFuncionou porra! " + bolsista.getLogin());
-                        
+                    {         
                         session.setAttribute("Bolsista", bolsista);
                         
                         RequestDispatcher view = request.getRequestDispatcher("IndexBolsista.jsp");
@@ -72,7 +70,7 @@ public class Login extends HttpServlet {
                     }
                     else
                     {
-                        System.out.println("\n\nNão consegui logar...\n\n");
+                        System.out.println("\n\nNão é bolsista...\n\n");
                         RequestDispatcher view = request.getRequestDispatcher("Error.jsp");
                         view.forward(request,response); 
                     }
@@ -80,7 +78,7 @@ public class Login extends HttpServlet {
             }
             else
             {
-                System.out.println("\n\nNão consegui logar...\n\n");
+                System.out.println("\n\nSem Conexão Com o Banco...\n\n");
                 RequestDispatcher view = request.getRequestDispatcher("Error.jsp");
                 view.forward(request,response); 
             }

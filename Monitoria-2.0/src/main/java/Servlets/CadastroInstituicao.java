@@ -23,7 +23,7 @@ public class CadastroInstituicao extends HttpServlet {
             InstituicaoDAO iDAO = new InstituicaoDAO();
             Instituicao instituicao = new Instituicao();
             
-            instituicao.setCnpj(request.getParameter("cnpj"));
+            instituicao.setCnpj(Integer.parseInt(request.getParameter("cnpj")));
             instituicao.setEmail(request.getParameter("email"));
             instituicao.setNome(request.getParameter("nome"));
             instituicao.setNum_cartao(request.getParameter("cartao"));

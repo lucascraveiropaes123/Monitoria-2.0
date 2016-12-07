@@ -37,8 +37,6 @@ public class DisciplinaDAO {
         Transaction tx = null;
         List disciplina = null;
         try{
-                System.out.println("\n\n\n\nTô listando...\n\n\n");
-
                 tx = session.beginTransaction();
 
                 DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
@@ -47,7 +45,7 @@ public class DisciplinaDAO {
                 
                 tx.commit();
                                 
-                System.out.println("Listei...");
+                System.out.println("Listado");
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
                 e.printStackTrace(); 
@@ -89,6 +87,7 @@ public class DisciplinaDAO {
             Disciplina disciplina = (Disciplina) session.createQuery("from Disciplina where key_disciplina = ?").setInteger(0, disciplinaID).uniqueResult();
             
             disciplina.setNome(disciplinaNova.getNome());
+            disciplina.setInstituicao_id(disciplinaNova.getInstituicao_id());
             
             session.update(disciplina); 
             
@@ -109,8 +108,6 @@ public class DisciplinaDAO {
             tx = session.beginTransaction();
             
             Disciplina disciplina = (Disciplina)session.get(Disciplina.class, DisciplinaID); 
-            
-            System.out.println("ID: " + DisciplinaID);
             
             session.delete(disciplina); 
             

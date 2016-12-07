@@ -1,8 +1,26 @@
+<%@page import="Instituicao.InstituicaoDAO"%>
 <%@page import="Instituicao.Instituicao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
     Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
+    InstituicaoDAO iDAO = new InstituicaoDAO();
+  
+    int sizePassword = instituicao.getSenha().length(), i;
+    
+    String senha = "*";
+    
+    for(i=0; i<sizePassword; i++)
+    {
+        if(i==0)
+            senha = "*";
+        else
+            senha += "*";
+    }
+    
+    int professores = iDAO.numProfessores(instituicao.getInstituicao_id());
+    int bolsistas = iDAO.numBolsistas(instituicao.getInstituicao_id());
+    
 %>
 
 
@@ -102,65 +120,23 @@
             </div>
         </nav> 
            
+        
+           
         <div id="page-wrapper" >
             <div id="page-inner">
-                <a href="">
-                    <div class="col-md-6 col-sm-12 col-xs-12" >
-                        <div class="panel panel-primary text-center no-boder bg-color-green green">
-                            <div class="panel-body">
-                                <br>
-                                <i class="fa fa-file-text" style="font-size: 5em"></i>
-                                <br><br>
-                            </div>
-                            <div class="panel-footer back-footer-green">
-                                <b style="font-size: 1.5em">Relatórios</b>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red red">
-                            <div class="panel-body">
-                                <br>
-                                <i class="fa fa-cogs" style="font-size: 5em"></i>
-                                <br><br>
-                            </div>
-                            <div class="panel-footer back-footer-red">
-                                <b style="font-size: 1.5em">Atualização</b>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="PerfilInstituicao.jsp">
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="panel panel-primary text-center no-boder bg-color-red red">
-                            <div class="panel-body">
-                                <br>
-                                <i class="fa fa-user" style="font-size: 5em"></i>
-                                <br><br>
-                            </div>
-                            <div class="panel-footer back-footer-red">
-                                <b style="font-size: 1.5em">Meu Perfil</b>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <br>
-                <a href="">
-                    <div class="col-md-6 col-sm-12 col-xs-12" >
-                        <div class="panel panel-primary text-center no-boder bg-color-green green">
-                            <div class="panel-body">
-                                <br>
-                                <i class="fa fa-folder-o" aria-hidden="true" style="font-size: 5em"></i>
-                                <br><br>
-                            </div>
-                            <div class="panel-footer back-footer-green">
-                                <b style="font-size: 1.5em">Dados Cadastrados</b>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                <div class="col-md-4 col-sm-12 col-xs-12" >
+                    <span>
+                        Empresa: <%=instituicao.getNome()%><br><br>
+                        CNPJ <%=instituicao.getCnpj()%><br><br>
+                        N° Cartão: <%=instituicao.getNum_cartao()%><br><br>
+                        e-Mail: <%=senha%><br><br>
+                        Senha: <%=instituicao.getSenha()%><br><br>
+                        N° de Professores: <%=professores%><br><br>
+                        N° de Bolsistas: <%=bolsistas%><br><br>
+                    </span>
+                    <br><br>
+                    <a href="PerfilAtualizarBolsista.jsp"><button class="btn btn-primary">Atualizar Dados</button></a>
+                </div>
             </div>
         </div>
            

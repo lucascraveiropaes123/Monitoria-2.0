@@ -78,14 +78,11 @@ public class PlanilhaDAO {
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
         try{
-            
-            System.out.println("Vou atualizar...");
-            
             tx = session.beginTransaction();
             
             Planilha planilha = (Planilha) session.createQuery("from Planilha where id_planilha = ?").setInteger(0, planilhaID).uniqueResult();
             
-            System.out.println("Atualizando...");
+            
             
             planilha.setBolsista(planilhaNova.getBolsista());
             planilha.setComputador(planilhaNova.getComputador());
@@ -101,12 +98,11 @@ public class PlanilhaDAO {
             planilha.setNum_documento(planilhaNova.getNum_documento());
             planilha.setTipo_documento(planilhaNova.getTipo_documento());
             planilha.setVisitante(planilhaNova.getVisitante());
-            
-            System.out.println("Min: " + planilha.getMin_saida());
+            planilha.setInstituicao_id(planilhaNova.getInstituicao_id());
             
             session.update(planilha); 
             
-            System.out.println("Atualizei...");
+            System.out.println("Atualizado");
             
             tx.commit();
             
