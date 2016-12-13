@@ -2,6 +2,7 @@ package Servlets;
 
 import Disciplina.Disciplina;
 import Disciplina.DisciplinaDAO;
+import Instituicao.Instituicao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,13 +20,15 @@ public class CadastroDisciplina extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            
             HttpSession session = request.getSession();
+            
+            Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
             
             DisciplinaDAO dDAO = new DisciplinaDAO();
             Disciplina disciplina = new Disciplina();
             
             disciplina.setNome(request.getParameter("nome"));
+            disciplina.setInstituicao_id(instituicao.getCnpj());
             
             Integer ID = dDAO.addDisciplina(disciplina);
                         

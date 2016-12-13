@@ -2,6 +2,7 @@ package Servlets;
 
 import Bolsista.Bolsista;
 import Bolsista.BolsistaDAO;
+import Instituicao.Instituicao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,6 +20,8 @@ public class CadastroBolsista extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             
+            Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
+            
             BolsistaDAO pDAO = new BolsistaDAO();
             Bolsista bolsista = new Bolsista();
             
@@ -30,6 +33,7 @@ public class CadastroBolsista extends HttpServlet {
             bolsista.setPrimeiro_nome(request.getParameter("primeiroNome"));
             bolsista.setPrimeiro_nome(request.getParameter("sobrenome"));
             bolsista.setSenha(request.getParameter("senha"));
+            bolsista.setInstituicao_id(instituicao.getCnpj());
             
             Integer ID = pDAO.addBolsista(bolsista);
                         

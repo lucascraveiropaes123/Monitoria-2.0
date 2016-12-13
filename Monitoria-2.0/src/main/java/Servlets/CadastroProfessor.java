@@ -1,5 +1,6 @@
 package Servlets;
 
+import Instituicao.Instituicao;
 import Professor.Professor;
 import Professor.ProfessorDAO;
 import java.io.IOException;
@@ -21,6 +22,8 @@ public class CadastroProfessor extends HttpServlet {
             
             HttpSession session = request.getSession();
             
+            Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
+            
             ProfessorDAO pDAO = new ProfessorDAO();
             Professor professor = new Professor();
             
@@ -31,6 +34,7 @@ public class CadastroProfessor extends HttpServlet {
             professor.setNome_completo(nomeCompleto);
             professor.setPrimeiro_nome(request.getParameter("primeiroNome"));
             professor.setSenha(request.getParameter("senha"));
+            professor.setInstituicao_id(instituicao.getCnpj());
             
             Integer ID = pDAO.addProfessor(professor);
                         

@@ -18,8 +18,8 @@
             senha += "*";
     }
     
-    int professores = iDAO.numProfessores(instituicao.getInstituicao_id());
-    int bolsistas = iDAO.numBolsistas(instituicao.getInstituicao_id());
+    int professores = iDAO.numProfessores(instituicao.getCnpj());
+    int bolsistas = iDAO.numBolsistas(instituicao.getCnpj());
     
 %>
 
@@ -127,10 +127,10 @@
                 <div class="col-md-4 col-sm-12 col-xs-12" >
                     <span>
                         Empresa: <%=instituicao.getNome()%><br><br>
-                        CNPJ <%=instituicao.getCnpj()%><br><br>
+                        CNPJ: <%=instituicao.getCnpj()%><br><br>
                         N° Cartão: <%=instituicao.getNum_cartao()%><br><br>
-                        e-Mail: <%=senha%><br><br>
-                        Senha: <%=instituicao.getSenha()%><br><br>
+                        e-Mail: <%=instituicao.getEmail()%><br><br>
+                        Senha: <%=senha%><br><br>
                         N° de Professores: <%=professores%><br><br>
                         N° de Bolsistas: <%=bolsistas%><br><br>
                     </span>

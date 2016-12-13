@@ -28,19 +28,22 @@ public class Login extends HttpServlet {
             List<Instituicao> instituicoes = iDAO.listInstituicao();
             List<Bolsista> bolsistas = bDAO.listBolsista();
                     
-            Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+            String login = request.getParameter("cnpj");
             String senha = request.getParameter("senha");
        
             if(instituicoes != null || bolsistas != null)
             {
                 for (Instituicao instituicao : instituicoes)
-                {     
-                    if(senha.equals(instituicao.getSenha()) && cnpj.equals(instituicao.getCnpj()))
+                {   
+                    String instituicaoCnpj = Integer.toString(instituicao.getCnpj());
+                    
+                    if(senha.equals(instituicao.getSenha()) && login.equals(instituicaoCnpj))
                     {   
                         session.setAttribute("Instituicao", instituicao);
                         
                         RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
-                        view.forward(request,response);   
+                        view.forward(request,response); 
+                        break;
                     }
                     else
                     {
@@ -50,7 +53,7 @@ public class Login extends HttpServlet {
                 
                 for (Bolsista bolsista : bolsistas)
                 {                      
-                    if(senha.equals(bolsista.getSenha()) && cnpj.equals(bolsista.getLogin()))
+                    if(senha.equals(bolsista.getSenha()) && login.equals(bolsista.getLogin()))
                     {    
                         session.setAttribute("Bolsista", bolsista);
                         

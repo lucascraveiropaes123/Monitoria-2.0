@@ -90,9 +90,7 @@
                         </ul>
                     </li>
                     <li>
-<<<<<<< HEAD
                         <a  href="Relatorios.jsp"><i class="fa fa-qrcode fa-3x"></i> Relatórios</a>
-=======
                         <a href="#"><i class="fa fa-list-alt fa-3x"></i>Relatórios<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
@@ -102,7 +100,6 @@
                                     <a href="CadastrarRelatorioIncidente.jsp">Incidentes</a>
                                 </li>
                             </ul>
->>>>>>> c0ca041fe81cb3cda35625d40daf59c299e1eff5
                     </li>
                     <li  >
                         <a  href="Planilhas.jsp"><i class="fa fa-table fa-3x" style="height: 45px; width:45px; margin-right: 10px;"></i> Planilhas </a>

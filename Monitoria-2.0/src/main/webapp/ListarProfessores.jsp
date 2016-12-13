@@ -144,6 +144,13 @@
                                         <tbody>
                                             <%for (Professor professor : professores)
                                             {
+                                                System.out.println("Professor: " + professor.getPrimeiro_nome());
+                                                System.out.println("Login: " + professor.getLogin());
+                                                System.out.println("Completo: " + professor.getNome_completo());
+                                                System.out.println("Senha: " + professor.getSenha());
+                                                System.out.println("ID: " + professor.getId_professor());
+                                                System.out.println("Instituição: " + professor.getInstituicao_id());
+                                                
                                                 String nomeBolsista = null;
                                                 Disciplina disciplina = dDAO.getDisciplina(Integer.parseInt(professor.getMateria()));
                                                 

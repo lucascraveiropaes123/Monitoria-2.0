@@ -1,6 +1,7 @@
 package Servlets;
 
 import Bolsista.Bolsista;
+import Instituicao.Instituicao;
 import Planilha.Planilha;
 import Planilha.PlanilhaDAO;
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class CadastroPlanilha extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             
+            Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
             Bolsista bolsista = (Bolsista)session.getAttribute("Bolsista");
             
             PlanilhaDAO pDAO = new PlanilhaDAO();
@@ -37,12 +39,12 @@ public class CadastroPlanilha extends HttpServlet {
             planilha.setHora_saida(null);
             planilha.setMin_saida(null);
             planilha.setBolsista(bolsista.getId_bolsista());
-            
+            planilha.setInstituicao_id(instituicao.getCnpj());
             
             planilha.setData_dia(Integer.toString(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)));
             planilha.setData_mes(Integer.toString(Calendar.getInstance().get(Calendar.MONTH)));
             planilha.setData_ano(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
-            
+                       
             Integer ID = pDAO.addPlanilha(planilha);
             
             if(ID != null)
