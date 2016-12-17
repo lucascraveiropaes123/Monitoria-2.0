@@ -153,7 +153,7 @@
                                                 
                                                 for (Bolsista bolsista : bolsistas)
                                                 {
-                                                    Integer id = Integer.parseInt(bolsista.getMateria());
+                                                    Integer id = bolsista.getMateria();
                                                     
                                                     if(id == disciplina.getKey_disciplina())
                                                     {

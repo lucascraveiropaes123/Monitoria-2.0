@@ -24,51 +24,47 @@ public class Login extends HttpServlet {
             
             InstituicaoDAO iDAO = new InstituicaoDAO();
             BolsistaDAO bDAO = new BolsistaDAO();
+            Integer loginValidation = 0;
             
             List<Instituicao> instituicoes = iDAO.listInstituicao();
             List<Bolsista> bolsistas = bDAO.listBolsista();
                     
             String login = request.getParameter("cnpj");
             String senha = request.getParameter("senha");
-       
-            if(instituicoes != null || bolsistas != null)
-            {
-                for (Instituicao instituicao : instituicoes)
+            
+            for (Instituicao instituicao : instituicoes)
+            {   
+                String instituicaoCnpj = Integer.toString(instituicao.getCnpj());
+
+                if(senha.equals(instituicao.getSenha()) && login.equals(instituicaoCnpj))
                 {   
-                    String instituicaoCnpj = Integer.toString(instituicao.getCnpj());
-                    
-                    if(senha.equals(instituicao.getSenha()) && login.equals(instituicaoCnpj))
-                    {   
-                        session.setAttribute("Instituicao", instituicao);
-                        
-                        RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
-                        view.forward(request,response); 
-                        break;
-                    }
-                    else
-                    {
-                        System.out.println("\n\nNão é instituição...\n\n");
-                    }
-                }
-                
-                for (Bolsista bolsista : bolsistas)
-                {                      
-                    if(senha.equals(bolsista.getSenha()) && login.equals(bolsista.getLogin()))
-                    {    
-                        session.setAttribute("Bolsista", bolsista);
-                        
-                        RequestDispatcher view = request.getRequestDispatcher("IndexBolsista.jsp");
-                        view.forward(request,response);   
-                    }
-                    else
-                    {
-                        System.out.println("\n\nNão é bolsista...\n\n");
-                        RequestDispatcher view = request.getRequestDispatcher("Error.jsp");
-                        view.forward(request,response); 
-                    }
+                    session.setAttribute("Instituicao", instituicao);
+
+                    loginValidation = 1;
                 }
             }
-            else
+            
+            for (Bolsista bolsista : bolsistas)
+            {                      
+                if(senha.equals(bolsista.getSenha()) && login.equals(bolsista.getLogin()))
+                {    
+                    session.setAttribute("Bolsista", bolsista);
+
+                    loginValidation = 2;
+                }
+            }
+            
+            if(loginValidation == 1)
+            {
+                RequestDispatcher view = request.getRequestDispatcher("Index.jsp");
+                view.forward(request,response); 
+            }
+            else if(loginValidation == 2)
+            {
+                RequestDispatcher view = request.getRequestDispatcher("BolsistaIndex.jsp");
+                view.forward(request,response); 
+            }
+            else if(loginValidation == 0)
             {
                 System.out.println("\n\nSem Conexão Com o Banco...\n\n");
                 RequestDispatcher view = request.getRequestDispatcher("Error.jsp");

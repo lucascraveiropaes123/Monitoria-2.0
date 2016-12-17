@@ -1,3 +1,4 @@
+<%@page import="com.sun.org.apache.xpath.internal.axes.SubContextList"%>
 <%@page import="Bolsista.*"%>
 <%@page import="Instituicao.*"%>
 <%@page import="Professor.*"%>
@@ -144,15 +145,18 @@
                                         <tbody>
                                             <%
                                             for (Bolsista bolsista : bolsistas)
-                                            {
+                                            {                                                
                                                 String nomeProfessor = null;
                                                 
-                                                Disciplina disciplina = dDAO.getDisciplina(Integer.parseInt(bolsista.getMateria()));
-                                                
+                                                Disciplina disciplina = dDAO.getDisciplina(bolsista.getMateria());
+                                                     
                                                 for (Professor professor : professores)
                                                 {
-                                                    if(professor.getMateria().equals(bolsista.getMateria()))
+                                                    Integer ID = Integer.parseInt(professor.getMateria());
+                                                    
+                                                    if(ID.equals(bolsista.getMateria()))
                                                     {
+                                                        System.out.println("Prof: " + nomeProfessor);
                                                         nomeProfessor = professor.getNome_completo();
                                                     }
                                                 }

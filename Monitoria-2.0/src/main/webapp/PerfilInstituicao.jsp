@@ -135,7 +135,7 @@
                         N° de Bolsistas: <%=bolsistas%><br><br>
                     </span>
                     <br><br>
-                    <a href="PerfilAtualizarBolsista.jsp"><button class="btn btn-primary">Atualizar Dados</button></a>
+                    <a href="PerfilAtualizarInstituicao.jsp"><button class="btn btn-primary">Atualizar Dados</button></a>
                 </div>
             </div>
         </div>

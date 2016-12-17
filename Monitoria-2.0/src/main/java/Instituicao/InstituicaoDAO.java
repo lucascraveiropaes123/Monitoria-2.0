@@ -4,6 +4,7 @@ import Bolsista.*;
 import HibernateUtil.*; 
 import Professor.*;
 import java.util.List; 
+import javax.servlet.http.HttpSession;
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
@@ -79,22 +80,20 @@ public class InstituicaoDAO {
     public void updateInstituicao (Integer instituicaoID, Instituicao instituicaoAntiga){
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
+        
         try{
             tx = session.beginTransaction();
-            Instituicao instituicao = (Instituicao) session.createQuery("from Instituicao where pk_instituicao = ?").setInteger(0, instituicaoID).uniqueResult();
             
+            Instituicao instituicao = (Instituicao) session.createQuery("from Instituicao where cnpj = ?").setInteger(0, instituicaoID).uniqueResult();
+                    
             instituicao.setCnpj(instituicaoAntiga.getCnpj());
-            
             instituicao.setEmail(instituicaoAntiga.getEmail());
-            
             instituicao.setSenha(instituicaoAntiga.getSenha());
-            
             instituicao.setNome(instituicaoAntiga.getNome());
-                        
             instituicao.setNum_cartao(instituicaoAntiga.getNum_cartao());
                         
             session.update(instituicao); 
-            
+                        
             tx.commit();
             
             session.flush();                        
