@@ -23,7 +23,7 @@ public class DeletarInstituicao extends HttpServlet {
             
             Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
             InstituicaoDAO iDAO = new InstituicaoDAO();
-            
+                        
             iDAO.deleteInstituicao(instituicao.getCnpj());
             
             System.out.println("\n\nDeletado\n\n");

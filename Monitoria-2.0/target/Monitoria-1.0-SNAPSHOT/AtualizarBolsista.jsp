@@ -11,7 +11,7 @@
     
     DisciplinaDAO dDAO = new DisciplinaDAO();
     
-    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina(instituicao.getCnpj());
+    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplinaByID(instituicao.getCnpj());
     
     Bolsista bolsista = (Bolsista)session.getAttribute("BolsistaVelho");
 %>

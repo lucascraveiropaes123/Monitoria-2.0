@@ -1,6 +1,11 @@
 package Disciplina;
 
+import Bolsista.Bolsista;
+import Bolsista.BolsistaDAO;
 import HibernateUtil.HibernateUtil;
+import Professor.Professor;
+import Professor.ProfessorDAO;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -17,8 +22,6 @@ public class DisciplinaDAO {
                         
             disciplinaID = (Integer)session.save(disciplina);
             
-            //session.flush();                              
-            
             tx.commit();
             
         }catch (HibernateException e) {
@@ -32,8 +35,8 @@ public class DisciplinaDAO {
         return disciplinaID;
     }
     
-    public List<Disciplina> listDisciplina(Integer InstituicaoID){
-        /*Session session = HibernateUtil.abrirSessaoComBD();
+    public List<Disciplina> listDisciplina(){
+        Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
         List disciplina = null;
         try{
@@ -46,25 +49,6 @@ public class DisciplinaDAO {
                 tx.commit();
                                 
                 System.out.println("Listado");
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-                e.printStackTrace(); 
-        }finally {
-            session.close(); 
-        }
-        return disciplina;*/
-        
-        Session session = HibernateUtil.abrirSessaoComBD();
-        Transaction tx = null;
-        List disciplina = null;
-        try{
-                tx = session.beginTransaction();
-
-                DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-
-                disciplina = session.createQuery("from Disciplina where instituicao_id = ?").setInteger(0, InstituicaoID).list();
-                
-                tx.commit();
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
                 e.printStackTrace(); 
@@ -126,7 +110,37 @@ public class DisciplinaDAO {
         try{
             tx = session.beginTransaction();
             
-            Disciplina disciplina = (Disciplina)session.get(Disciplina.class, DisciplinaID); 
+            Disciplina disciplina = getDisciplina(DisciplinaID);
+            
+            ProfessorDAO pDAO = new ProfessorDAO();
+            List<Professor> professores = (List<Professor>)pDAO.listProfessor();
+            
+            BolsistaDAO bDAO = new BolsistaDAO();
+            List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
+            
+            for(Professor professor : professores)
+            {
+                Integer pID = Integer.parseInt(professor.getMateria());
+                if(pID.equals(disciplina.getKey_disciplina()))
+                {
+                    System.out.println("Professor: " + professor.getNome_completo());
+                    System.out.println("Status: Deletado");
+                    pDAO.deleteProfessor(professor.getId_professor());
+                }
+            }
+            
+            for(Bolsista bolsista : bolsistas)
+            {
+                if(bolsista.getMateria().equals(disciplina.getKey_disciplina()))
+                {
+                    System.out.println("Bolsista: " + bolsista.getNome_completo());
+                    System.out.println("Status: Deletado");
+                    bDAO.deleteBolsista(bolsista.getId_bolsista());
+                }
+            }
+            
+            System.out.println("Disciplina: " + disciplina.getNome());
+            System.out.println("Status: Deletada");
             
             session.delete(disciplina); 
             
@@ -136,5 +150,23 @@ public class DisciplinaDAO {
         }finally {
             session.close(); 
         }
+    }
+    
+    public List<Disciplina> listDisciplinaByID(Integer InstituicaoID){
+        
+        List<Disciplina> todasDisciplinas = (List<Disciplina>)listDisciplina();
+        
+        List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
+        for(Disciplina disciplina : todasDisciplinas)
+        {
+            if(disciplina.getInstituicao_id().equals(InstituicaoID))
+            {
+                System.out.println("Disciplina: " + disciplina.getNome());
+                disciplinas.add(disciplina);
+            }
+        }
+        
+        return disciplinas;
     }
 }

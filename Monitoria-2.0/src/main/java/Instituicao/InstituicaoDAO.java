@@ -1,6 +1,8 @@
 package Instituicao;
 
 import Bolsista.*;
+import Disciplina.Disciplina;
+import Disciplina.DisciplinaDAO;
 import HibernateUtil.*; 
 import Professor.*;
 import java.util.List; 
@@ -54,13 +56,13 @@ public class InstituicaoDAO {
         return instituicao;
     }
     
-    public Instituicao getInstituicao(String InstituicaoID){
+    public Instituicao getInstituicao(Integer InstituicaoID){
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
             
-            Instituicao instituicao = (Instituicao) session.createQuery("from Instituicao where cnpj = ?").setString(0, InstituicaoID).uniqueResult();
+            Instituicao instituicao = (Instituicao) session.createQuery("from Instituicao where cnpj = ?").setInteger(0, InstituicaoID).uniqueResult();
             
             if (instituicao != null)
             {
@@ -110,13 +112,18 @@ public class InstituicaoDAO {
         try{
             tx = session.beginTransaction();
             
-            Instituicao instituicao = getInstituicao(Integer.toString(InstituicaoID));
+            Instituicao instituicao = getInstituicao(InstituicaoID);
+            
+            System.out.println("Instituicao: " + instituicao.getNome());
             
             ProfessorDAO pDAO = new ProfessorDAO();
             List<Professor> professores = (List<Professor>)pDAO.listProfessor();
             
             BolsistaDAO bDAO = new BolsistaDAO();
             List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
+            
+            DisciplinaDAO dDAO = new DisciplinaDAO();
+            List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina();
             
             for(Professor professor : professores)
             {
@@ -135,6 +142,16 @@ public class InstituicaoDAO {
                     System.out.println("Bolsista: " + bolsista.getNome_completo());
                     System.out.println("Status: Deletado");
                     bDAO.deleteBolsista(bolsista.getId_bolsista());
+                }
+            }
+            
+            for(Disciplina disciplina : disciplinas)
+            {
+                if(disciplina.getInstituicao_id().equals(instituicao.getCnpj()))
+                {
+                    System.out.println("Disciplina: " + disciplina.getNome());
+                    System.out.println("Status: Deletado");
+                    dDAO.deleteDisciplina(disciplina.getKey_disciplina());
                 }
             }
             
