@@ -29,7 +29,7 @@
                     <h1>Sistema Monitoria</h1>
 
                     <input name="nome"  type="text" placeholder="Nome da Instituição"/>
-                    <input name="email"  type="text" placeholder="e-Mail"/>
+                    <input name="email"  type="email" placeholder="e-Mail"/>
                     <input name="cnpj"  type="text" placeholder="CNPJ"/>
                     <input name="cartao"  type="text" placeholder="Cartão de Crédito"/>
                     <input name="senha"  type="password" placeholder="Senha"/>

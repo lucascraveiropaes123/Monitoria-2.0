@@ -32,8 +32,8 @@ public class DisciplinaDAO {
         return disciplinaID;
     }
     
-    public List<Disciplina> listDisciplina(){
-        Session session = HibernateUtil.abrirSessaoComBD();
+    public List<Disciplina> listDisciplina(Integer InstituicaoID){
+        /*Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
         List disciplina = null;
         try{
@@ -46,6 +46,25 @@ public class DisciplinaDAO {
                 tx.commit();
                                 
                 System.out.println("Listado");
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+                e.printStackTrace(); 
+        }finally {
+            session.close(); 
+        }
+        return disciplina;*/
+        
+        Session session = HibernateUtil.abrirSessaoComBD();
+        Transaction tx = null;
+        List disciplina = null;
+        try{
+                tx = session.beginTransaction();
+
+                DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+
+                disciplina = session.createQuery("from Disciplina where instituicao_id = ?").setInteger(0, InstituicaoID).list();
+                
+                tx.commit();
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
                 e.printStackTrace(); 

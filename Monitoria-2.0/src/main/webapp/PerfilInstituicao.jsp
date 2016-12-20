@@ -136,6 +136,7 @@
                     </span>
                     <br><br>
                     <a href="PerfilAtualizarInstituicao.jsp"><button class="btn btn-primary">Atualizar Dados</button></a>
+                    <a href="DeletarInstituicao"><button class="btn btn-primary">Deletar Instituição</button></a>
                 </div>
             </div>
         </div>

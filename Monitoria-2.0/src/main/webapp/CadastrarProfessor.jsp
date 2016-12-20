@@ -9,7 +9,7 @@
     
     DisciplinaDAO dDAO = new DisciplinaDAO();
 
-    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina();
+    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina(instituicao.getCnpj());
 %>
 
 
@@ -140,6 +140,7 @@
                                     %>
                                         <%=option%>
                                     <%
+                                        System.out.println("Materia: " + disciplina.getNome());
                                     }
                                     %>
                                 </select>

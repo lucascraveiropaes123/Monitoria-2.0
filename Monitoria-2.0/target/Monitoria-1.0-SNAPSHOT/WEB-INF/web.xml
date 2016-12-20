@@ -64,6 +64,10 @@
         <servlet-name>AtualizarInstituicao</servlet-name>
         <servlet-class>Servlets.AtualizarInstituicao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeletarInstituicao</servlet-name>
+        <servlet-class>Servlets.DeletarInstituicao</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>AtualizarInstituicao</servlet-name>
         <url-pattern>/AtualizarInstituicao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletarInstituicao</servlet-name>
+        <url-pattern>/DeletarInstituicao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

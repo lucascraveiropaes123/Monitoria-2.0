@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 public class InstituicaoDAO {
     
     public Integer addInstituicao (Instituicao instituicao){
-        Session session = HibernateUtil.abrirSessaoComBD();
+        Session session = HibernateUtil.abrirSessaoComBD();        
         Transaction tx = null;
         Integer instituicaoID = null;
         try{
@@ -104,13 +104,42 @@ public class InstituicaoDAO {
         }
     }
     
-    public void deleteProfessor(Integer InstituicaoID){
+    public void deleteInstituicao(Integer InstituicaoID){
         Session session = HibernateUtil.abrirSessaoComBD();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
             
-            Instituicao instituicao = (Instituicao)session.get(Instituicao.class, InstituicaoID); 
+            Instituicao instituicao = getInstituicao(Integer.toString(InstituicaoID));
+            
+            ProfessorDAO pDAO = new ProfessorDAO();
+            List<Professor> professores = (List<Professor>)pDAO.listProfessor();
+            
+            BolsistaDAO bDAO = new BolsistaDAO();
+            List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
+            
+            for(Professor professor : professores)
+            {
+                if(professor.getInstituicao_id().equals(instituicao.getCnpj()))
+                {
+                    System.out.println("Professor: " + professor.getNome_completo());
+                    System.out.println("Status: Deletado");
+                    pDAO.deleteProfessor(professor.getId_professor());
+                }
+            }
+            
+            for(Bolsista bolsista : bolsistas)
+            {
+                if(bolsista.getInstituicao_id().equals(instituicao.getCnpj()))
+                {
+                    System.out.println("Bolsista: " + bolsista.getNome_completo());
+                    System.out.println("Status: Deletado");
+                    bDAO.deleteBolsista(bolsista.getId_bolsista());
+                }
+            }
+            
+            System.out.println("Instituicao: " + instituicao.getNome());
+            System.out.println("Status: Deletado");
             
             session.delete(instituicao); 
             
@@ -142,8 +171,8 @@ public class InstituicaoDAO {
     
     public int numBolsistas(Integer ID)
     {
-        BolsistaDAO pDAO = new BolsistaDAO();
-        List<Bolsista> bolsistas = (List<Bolsista>)pDAO.listBolsista();
+        BolsistaDAO bDAO = new BolsistaDAO();
+        List<Bolsista> bolsistas = (List<Bolsista>)bDAO.listBolsista();
         
         int i=0;
         

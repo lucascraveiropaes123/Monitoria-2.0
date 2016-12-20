@@ -7,11 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
+    
     DisciplinaDAO dDAO = new DisciplinaDAO();
     
-    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina();
-    
-    Instituicao instituicao = (Instituicao)session.getAttribute("Instituicao");
+    List<Disciplina> disciplinas = (List<Disciplina>)dDAO.listDisciplina(instituicao.getCnpj());
     
     Bolsista bolsista = (Bolsista)session.getAttribute("BolsistaVelho");
 %>
